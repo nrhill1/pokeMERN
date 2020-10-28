@@ -9,7 +9,7 @@ class SearchBar extends Component {
         super(props)
         this.state = {
             query: '',
-            pokemon: [],
+            pokemon: null,
             loading: false
         }
         this.handleChange = this.handleChange.bind(this)
@@ -20,10 +20,10 @@ class SearchBar extends Component {
         this.setState({query: event.target.value})
     }
 
-    componentDidMount() {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/`)
-            .then(res => this.setState({ pokemon: res.results }))
-            .then(console.log(this.state.pokemon))
+    async componentDidMount() {
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
+        this.setState({ pokemon: res.data.results })
+        console.log(this.state.pokemon)
     }
 
 
