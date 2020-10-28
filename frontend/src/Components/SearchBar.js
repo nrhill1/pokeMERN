@@ -20,6 +20,7 @@ class SearchBar extends Component {
     }
 
     handleSubmit(query) {
+        console.log(query)
         fetch(`https://pokeapi.co/api/v2/pokemon/${query}`)
         .then(res => res.json())
         .then(data => this.setState({results: [data]}))
@@ -27,8 +28,8 @@ class SearchBar extends Component {
 
 
     showResults() {
-        this.state.results.map(poke => {
-            return(
+        return(
+            this.state.results.map(poke => 
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={poke.sprites['front_default']} />
                     <Card.Body>
@@ -41,7 +42,7 @@ class SearchBar extends Component {
                     </Card.Body>
                 </Card>
             )
-        })
+        )
     }
 
     render() {
