@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import axios from 'axios'
 
 class SearchBar extends Component {
 
@@ -8,7 +9,7 @@ class SearchBar extends Component {
         super(props)
         this.state = {
             query: '',
-            results: [],
+            pokemon: [],
             loading: false
         }
         this.handleChange = this.handleChange.bind(this)
@@ -19,38 +20,19 @@ class SearchBar extends Component {
         this.setState({query: event.target.value})
     }
 
-    handleSubmit(query) {
-        console.log(query)
-        fetch(`https://pokeapi.co/api/v2/pokemon/${query}`)
-        .then(res => res.json())
-        .then(data => this.setState({results: [data]}))
+    componentDidMount() {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/`)
+            .then(res => this.setState({ pokemon: res.results }))
+            .then(console.log(this.state.pokemon))
     }
 
-
-    showResults() {
-        return(
-            this.state.results.map(poke => 
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={poke.sprites['front_default']} />
-                    <Card.Body>
-                        <Card.Title>{poke.name}</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Add</Button>
-                    </Card.Body>
-                </Card>
-            )
-        )
-    }
 
     render() {
         return (
             <div>
                 <form>
                     <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon..."></input>
-                    <Button type="submit" onClick={this.handleSubmit(this.state.query)}></Button>
+                    <Button type="submit"></Button>
                 </form>
                 <div id="result">
                 </div>
