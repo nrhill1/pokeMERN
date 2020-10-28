@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 
 class SearchBar extends Component {
@@ -18,24 +16,28 @@ class SearchBar extends Component {
 
     handleChange(event) {
         this.setState({query: event.target.value})
+        console.log(this.state.query)
     }
 
+    /*
     async componentDidMount() {
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
         this.setState({ pokemon: res.data.results })
         console.log(this.state.pokemon)
     }
+    */
+   
+    submitSearch(query) {
+
+    }
 
 
     render() {
         return (
-            <div>
-                <form>
-                    <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon..."></input>
-                    <Button type="submit"></Button>
+            <div id="searchbar">
+                <form className="search">
+                    <input type="text" handleChange={this.handleChange} placeholder="Search for a Pokémon"></input>
                 </form>
-                <div id="result">
-                </div>
             </div>
         )
     }
