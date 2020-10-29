@@ -27,9 +27,12 @@ class SearchBar extends Component {
                         this.setState({ pokemon: res.data})
                     } else {
                         this.setState({ error: res.status})
+                        throw new Error(res)
                     }
                 })
-                .then(console.log(this.state.pokemon))
+                .catch(function (error) {
+                    console.log(error)
+                })
         } else {
             console.log("Blank query")
         }
@@ -38,6 +41,11 @@ class SearchBar extends Component {
     handleChange(event) {
         this.setState({ query: event.target.value })
         console.log(this.state.query)
+    }
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({ error })
+        console.log(error)
     }
 
     handleSubmit(event) {
