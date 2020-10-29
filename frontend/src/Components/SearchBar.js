@@ -10,9 +10,18 @@ class SearchBar extends Component {
             pokemon: null,
             loading: false
         }
+        this.findPoke = this.findPoke.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+       
+    findPoke(query) {
+        console.log("Finding ", query)
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
+            .then(res => this.setState({ pokemon: res}))
+            .then(console.log(this.state.pokemon))
+    }
 
     handleChange(event) {
         this.setState({query: event.target.value})
@@ -21,6 +30,8 @@ class SearchBar extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
+        console.log("Submitting: ", this.state.query)
+        this.findPoke(this.state.query)
     }
 
     /*
@@ -30,19 +41,13 @@ class SearchBar extends Component {
         console.log(this.state.pokemon)
     }
     */
-   
-    findPokemon(query) {
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
-            .then(res => this.setState({ pokemon: res}))
-            .then(console.log(this.state.pokemon))
-    }
 
 
     render() {
         return (
             <div id="searchbar">
-                <form className="search">
-                    <input type="text" handleChange={this.handleChange} placeholder="Search for a Pokémon"></input>
+                <form className="search" onSubmit={this.handleSubmit}>
+                    <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon"></input>
                     <button type="submit">Search</button>
                 </form>
             </div>
