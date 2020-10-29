@@ -8,7 +8,8 @@ class SearchBar extends Component {
         this.state = {
             query: '',
             pokemon: null,
-            loading: false
+            loading: false,
+            error: null
         }
         this.findPoke = this.findPoke.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -19,8 +20,15 @@ class SearchBar extends Component {
     findPoke(query) {
         console.log("Finding ", query)
         if (query.length) {
+            query = query.toLowerCase()
             axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
-                .then(res => this.setState({ pokemon: res}))
+                .then(res => {
+                    if (res.status === 200){
+                        this.setState({ pokemon: res.data})
+                    } else {
+                        this.setState({ error: res.status})
+                    }
+                })
                 .then(console.log(this.state.pokemon))
         } else {
             console.log("Blank query")
@@ -28,14 +36,19 @@ class SearchBar extends Component {
     }
 
     handleChange(event) {
-        this.setState({query: event.target.value})
+        this.setState({ query: event.target.value })
         console.log(this.state.query)
     }
 
     handleSubmit(event) {
         event.preventDefault()
         console.log("Submitting: ", this.state.query)
-        this.findPoke(this.state.query)
+        try {
+            this.findPoke(this.state.query)
+        } catch(error) {
+            this.setState({ error })
+            console.log(error)
+        }
     }
 
     /*
@@ -48,6 +61,9 @@ class SearchBar extends Component {
 
 
     render() {
+        if (this.state.error) {
+            return (<h2>Error: ${this.state.error}</h2>)
+        }
         return (
             <div id="searchbar">
                 <form className="search" onSubmit={this.handleSubmit}>
