@@ -27,8 +27,10 @@ class SearchBar extends Component {
     }
     */
    
-    submitSearch(query) {
-
+    findPokemon(query) {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
+            .then(res => this.setState({ pokemon: res}))
+            .then(console.log(this.state.pokemon))
     }
 
 
@@ -37,6 +39,7 @@ class SearchBar extends Component {
             <div id="searchbar">
                 <form className="search">
                     <input type="text" handleChange={this.handleChange} placeholder="Search for a Pokémon"></input>
+                    <button type="submit">Search</button>
                 </form>
             </div>
         )
