@@ -41,7 +41,7 @@ class SearchBar extends Component {
 
     componentDidCatch(error, errorInfo) {
         this.setState({ error })
-        console.log(error)
+        console.log(errorInfo)
     }
 
     handleSubmit(event) {
@@ -56,13 +56,14 @@ class SearchBar extends Component {
     }
 
     showResult(result) {
+        console.log("showing result: ", result.name)
         result = [result]
-        result.map(poke => 
+        return(result.map(poke => 
             <div>
                 <h1>{poke.name}</h1>
                 <img alt="sprite" src={poke.sprites['front_default']}></img>
             </div>
-        )
+        ))
     }
 
     /*
