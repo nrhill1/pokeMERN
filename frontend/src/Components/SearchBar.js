@@ -18,9 +18,13 @@ class SearchBar extends Component {
        
     findPoke(query) {
         console.log("Finding ", query)
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
-            .then(res => this.setState({ pokemon: res}))
-            .then(console.log(this.state.pokemon))
+        if (query.length) {
+            axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
+                .then(res => this.setState({ pokemon: res}))
+                .then(console.log(this.state.pokemon))
+        } else {
+            console.log("Blank query")
+        }
     }
 
     handleChange(event) {
