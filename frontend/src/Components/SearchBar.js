@@ -23,12 +23,8 @@ class SearchBar extends Component {
             query = query.toLowerCase()
             axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`)
                 .then(res => {
-                    if (res.status === 200){
-                        this.setState({ pokemon: res.data})
-                    } else {
-                        this.setState({ error: res.status})
-                        throw new Error(res)
-                    }
+                    this.setState({ pokemon: res.data})
+                    console.log(this.state.pokemon)
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -59,6 +55,16 @@ class SearchBar extends Component {
         }
     }
 
+    showResult(result) {
+        result = [result]
+        result.map(poke => 
+            <div>
+                <h1>{poke.name}</h1>
+                <img alt="sprite" src={poke.sprites['front_default']}></img>
+            </div>
+        )
+    }
+
     /*
     async componentDidMount() {
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
@@ -78,6 +84,9 @@ class SearchBar extends Component {
                     <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon"></input>
                     <button type="submit">Search</button>
                 </form>
+                <div className="result">
+                    {this.state.pokemon ? this.showResult(this.state.pokemon) : ""}
+                </div>
             </div>
         )
     }
