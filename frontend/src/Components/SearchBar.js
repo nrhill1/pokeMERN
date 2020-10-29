@@ -19,6 +19,10 @@ class SearchBar extends Component {
         console.log(this.state.query)
     }
 
+    handleSubmit(event) {
+        event.preventDefault()
+    }
+
     /*
     async componentDidMount() {
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
