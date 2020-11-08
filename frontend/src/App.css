@@ -16,3 +16,7 @@ header:hover {
   margin: 0 auto;
   max-width: fit-content;
 }
+
+.search {
+  margin-bottom: 20px;
+}

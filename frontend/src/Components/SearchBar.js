@@ -72,15 +72,6 @@ class SearchBar extends Component {
         ))
     }
 
-    /*
-    async componentDidMount() {
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
-        this.setState({ pokemon: res.data.results })
-        console.log(this.state.pokemon)
-    }
-    */
-
-
     render() {
         if (this.state.error) {
             return (<h2>Error: ${this.state.error}</h2>)
