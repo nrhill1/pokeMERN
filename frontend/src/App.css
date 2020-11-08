@@ -10,3 +10,9 @@ header {
 header:hover {
   text-decoration: underline;
 }
+
+.pokemon {
+  border: 1px black solid;
+  margin: 0 auto;
+  max-width: fit-content;
+}

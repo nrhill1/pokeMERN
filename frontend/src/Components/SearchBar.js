@@ -59,8 +59,8 @@ class SearchBar extends Component {
         console.log("showing result: ", result.name)
         result = [result]
         return(result.map(poke => 
-            <div>
-                <h1>{poke.name}</h1>
+            <div className="pokemon">
+                <h1>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h1>
                 <img alt="sprite" src={poke.sprites['front_default']}></img>
             </div>
         ))
