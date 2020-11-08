@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
+import Result from './Result'
 import axios from 'axios'
 
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1)
-}
-  
+
 
 class SearchBar extends Component {
 
@@ -60,18 +58,6 @@ class SearchBar extends Component {
         }
     }
 
-    showResult(result) {
-        console.log("showing result: ", result.name)
-        result = [result]
-        return(result.map(poke => 
-            <div className="pokemon">
-                <h1>{poke.name.capitalize()}</h1>
-                <img alt="sprite" src={poke.sprites['front_default']}></img>
-                <img alt="backsprite" src={poke.sprites['back_default']}></img>
-            </div>
-        ))
-    }
-
     render() {
         if (this.state.error) {
             return (<h2>Error: ${this.state.error}</h2>)
@@ -82,10 +68,8 @@ class SearchBar extends Component {
                     <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon"></input>
                     <button type="submit">Search</button>
                 </form>
-                <div className="result">
-                    {this.state.pokemon ? this.showResult(this.state.pokemon) : ""}
-                </div>
-            </div>
+                <Result pokemon={this.state.pokemon}/>
+            </div>   
         )
     }
 }

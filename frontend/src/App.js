@@ -1,5 +1,6 @@
 import './App.css';
 import SearchBar from './Components/SearchBar.js'
+import Login from './Components/Login.js'
 
 function App() {
   return (
