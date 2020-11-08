@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1)
+}
+  
+
 class SearchBar extends Component {
 
     constructor(props) {
@@ -60,8 +65,9 @@ class SearchBar extends Component {
         result = [result]
         return(result.map(poke => 
             <div className="pokemon">
-                <h1>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</h1>
+                <h1>{poke.name.capitalize()}</h1>
                 <img alt="sprite" src={poke.sprites['front_default']}></img>
+                <img alt="backsprite" src={poke.sprites['back_default']}></img>
             </div>
         ))
     }
