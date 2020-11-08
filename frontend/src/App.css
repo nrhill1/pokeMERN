@@ -12,7 +12,6 @@ header:hover {
 }
 
 .pokemon {
-  border: 1px black solid;
   margin: 0 auto;
   max-width: fit-content;
 }

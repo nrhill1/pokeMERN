@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Card, Button } from 'react-bootstrap'
 
 
 String.prototype.capitalize = function() {
@@ -8,12 +9,22 @@ String.prototype.capitalize = function() {
 class Result extends Component {
 
   render() {
+    if (this.props.pokemon){
+      return (
+        <div className="pokemon">
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={this.props.pokemon.sprites['front_default']} style={{ maxWidth: '8rem', margin: '0 auto'}}/>
+            <Card.Img variant="top" src={this.props.pokemon.sprites['back_default']} style={{ maxWidth: '8rem', margin: '0 auto'}}/>
+            <Card.Body>
+              <Card.Title>{this.props.pokemon.name.capitalize()}</Card.Title>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        </div>
+      )
+    }
     return (
-      <div className="pokemon">
-        <h1>{this.props.pokemon.name.capitalize()}</h1>
-        <img alt="sprite" src={this.props.pokemon.sprites['front_default']}></img>
-        <img alt="backsprite" src={this.props.pokemon.sprites['back_default']}></img>
-      </div>
+      <div></div>
     )
   }
 
