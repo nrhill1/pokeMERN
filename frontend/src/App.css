@@ -14,6 +14,10 @@ header:hover {
   text-decoration: underline;
 }
 
+.navLink {
+  margin: 0 auto;
+}
+
 .pokemon {
   margin: 0 auto;
   max-width: fit-content;

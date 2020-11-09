@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
+import { Navbar, Nav } from 'react-bootstrap'
 import { connect } from 'react-redux';
 
 class Navigation extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            
-        }
-    }
-
-    render() {
-        return(
-            <div></div>
-        )
-    }
+  render() {
+    return(
+      <div>
+        <Navbar bg="dark" variant="dark" className="navbar">
+          ><Nav.Link className="navLink" href="/">Home</Nav.Link>
+          ><Nav.Link className="navLink" href="/user">Profile</Nav.Link>
+          ><Nav.Link className="navLink" href="/login">Login</Nav.Link>
+          ><Nav.Link className="navLink" href="/register">Register</Nav.Link>
+          ><Nav.Link className="navLink">Logout</Nav.Link>
+        </Navbar>
+      </div>
+    )
+  }
 }
 
 export default Navigation
