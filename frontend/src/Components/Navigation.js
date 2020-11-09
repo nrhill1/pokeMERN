@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class Navigate extends Component {
+class Navigation extends Component {
 
     constructor(props) {
         super(props)
@@ -12,4 +12,4 @@ class Navigate extends Component {
 
 }
 
-export default Navigate
+export default Navigation
