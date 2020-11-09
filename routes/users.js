@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
+const config = require('config')
+const jwt = require('jsonwebtoken')
 
 // User Model
 const User = require('../models/User.js')
@@ -9,7 +11,7 @@ const User = require('../models/User.js')
 // @desc    Register new user 
 // @access  Public
 
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
   // Define request body
   const {username, email, password} = req.body;
 
@@ -21,8 +23,11 @@ router.post('/', (req, res) => {
   // Find existing user
   User.findOne({ email })
     .then(user => {
+
+      // Check if the email is already registered
       if(user) return res.status(400).json({ msg: "This email is already in use."})
 
+      // Define new user based on schema
       const newUser = User({
         username,
         email,
@@ -37,14 +42,63 @@ router.post('/', (req, res) => {
           newUser.password = hash;
           newUser.save()
             .then(user => {
-              res.json({
-                user
-              })
+              jwt.sign(
+                { id: user.id },
+                config.get('jwtSecret'),
+                { expiresIn: 3600 },
+                (err, token) => {
+                  if(err) throw err;
+                  res.json({
+                    token,
+                    user
+                  })
+                }
+              )
             })
         })
       })
     })
-
 })
+
+
+// @route   POST api/users
+// @desc    Auth user 
+// @access  Public
+
+router.post('/login', (req, res) => {
+  // Define request body
+  const { email, password} = req.body;
+
+  // Registration validation
+  if (!email || !password) {
+    return res.status(400).json({ msg: "Please complete all fields."})
+  }
+
+  // Find existing user
+  User.findOne({ email })
+    .then(user => {
+      if(!user) return res.status(400).json({ msg: "This email is not registered."})
+
+      // Validate password
+      bcrypt.compare(password, user.password)
+        .then(isMatch => {
+          if(!isMatch) return res.status(400).json({ msg: "Invalid password" })
+
+          jwt.sign(
+            { id: user.id },
+            config.get('jwtSecret'),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if(err) throw err;
+              res.json({
+                token,
+                user
+              })
+            }
+          )
+        })
+    })
+})
+
 
 module.exports = router;
