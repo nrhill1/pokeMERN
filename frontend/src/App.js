@@ -15,7 +15,12 @@ class App extends Component {
           <header className="App-header">
               PokéMERN
           </header>
-          <SearchBar />
+          <Switch>
+                <Route exact path="/" component={SearchBar} />
+                <Route exact path="/user" component={Profile} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+             </Switch>
         </div>
       </Provider>
     );
