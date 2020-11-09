@@ -1,20 +1,35 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const cors = require('cors')
+require("dotenv").config()
 
+// Import Routes
+const userRoutes = require('./routes/users')
+
+// Set up Express
 const app = express();
 
-// Bodyparser Middleware
-app.use(bodyParser.json());
+// JSON Middleware
+app.use(express.json())
+// CORS Middleware
+app.use(cors())
 
 // DB Config
 const db = require('./config/keys').mongoURI;
 
 // Connect to Mongo
 mongoose
-    .connect(db)
+    .connect(db, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+    })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err))
+
+
+// User Routes
+app.use('/users', userRoutes)
 
 const port = process.env.PORT || 5000;
 

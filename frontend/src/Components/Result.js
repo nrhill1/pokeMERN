@@ -17,7 +17,7 @@ class Result extends Component {
             <Card.Img variant="top" src={this.props.pokemon.sprites['back_default']} style={{ maxWidth: '8rem', margin: '0 auto'}}/>
             <Card.Body>
               <Card.Title>{this.props.pokemon.name.capitalize()}</Card.Title>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Add to my team</Button>
             </Card.Body>
           </Card>
         </div>
