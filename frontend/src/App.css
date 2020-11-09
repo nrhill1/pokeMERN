@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background: linear-gradient(#e66465, #9198e5);
+  height: 100vh;
+  min-height: 100vh;
 }
 
 header {
@@ -14,6 +17,7 @@ header:hover {
 .pokemon {
   margin: 0 auto;
   max-width: fit-content;
+  font-family: 'Press Start 2P';
 }
 
 .search {
