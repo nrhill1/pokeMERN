@@ -65,7 +65,7 @@ class SearchBar extends Component {
         return (
             <div id="searchbar">
                 <form className="search" onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} placeholder="Search for a Pokémon"></input>
+                    <input className="searchInput" type="text" onChange={this.handleChange} placeholder="Search for a Pokémon"></input>
                     <button type="submit">Search</button>
                 </form>
                 <Result pokemon={this.state.pokemon}/>

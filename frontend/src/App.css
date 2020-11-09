@@ -22,4 +22,9 @@ header:hover {
 
 .search {
   margin-bottom: 20px;
+  font-family: 'Press Start 2P';
+}
+
+.searchInput {
+  margin-right: 10px;
 }
