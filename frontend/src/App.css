@@ -14,6 +14,10 @@ header:hover {
   text-decoration: underline;
 }
 
+h2 {
+  font-family: 'Press Start 2P';
+}
+
 .loginForm {
   max-width: 25rem;
   margin: 0 auto;
