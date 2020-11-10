@@ -9,7 +9,7 @@ class Navigation extends Component {
       <div>
         <Navbar bg="dark" variant="dark" className="navbar">
           <Nav.Link className="navLink" href="/">Home</Nav.Link>
-          { this.props.userReducer.loggedIn ? <Nav.Link className="navLink" href="/user">Profile</Nav.Link>: ""}
+          { this.props.userReducer.loggedIn ? <Nav.Link className="navLink" href="/user">{this.props.userReducer.user.username}</Nav.Link>: ""}
           { !this.props.userReducer.loggedIn ? <Nav.Link className="navLink" href="/login">Login</Nav.Link>: ""}
           { !this.props.userReducer.loggedIn ? <Nav.Link className="navLink" href="/register">Register</Nav.Link>: ""}
           { this.props.userReducer.loggedIn ? <Nav.Link className="navLink">Logout</Nav.Link>: ""}
