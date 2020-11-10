@@ -20,6 +20,7 @@ class Login extends Component  {
   onSubmit = (e) => {
     e.preventDefault()
     this.props.fetchUser(this.state)
+    this.props.history.push('/')
   }
 
   render() {
