@@ -20,6 +20,9 @@ class App extends Component {
         <header className="App-header">
             PokéMERN
         </header>
+        {
+          !this.props.userReducer.loggedIn ? <h1>Sign Up or Login!</h1> : <h1>Welcome, {this.props.userReducer.user.username}</h1>
+        }
         <Switch>
           <Route exact path="/" component={SearchBar} />
           <Route exact path="/user" component={Profile} />
@@ -31,5 +34,11 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    userReducer: state.userReducer
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
