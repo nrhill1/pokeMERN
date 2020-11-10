@@ -19,7 +19,7 @@ class App extends Component {
             PokéMERN
         </header>
         {
-          !this.props.userReducer.loggedIn ? <h1>Sign Up or Login!</h1> : <h1>Welcome, {this.props.userReducer.user.username}</h1>
+          !this.props.userReducer.loggedIn ? <h2>Sign Up or Login!</h2> : <h2>Welcome, {this.props.userReducer.user.username}</h2>
         }
         <Switch>
           <Route exact path="/" component={SearchBar} />
