@@ -29,6 +29,11 @@ header:hover {
   font-family: 'Press Start 2P';
 }
 
+.regForm {
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
 .search {
   margin-bottom: 20px;
   font-family: 'Press Start 2P';

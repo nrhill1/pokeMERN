@@ -26,17 +26,21 @@ class Login extends Component  {
     return(
       <div className="loginForm">
         <Form>
+
           <Form.Group controlId="email" >
             <Form.Label>Email address</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" />
+            <Form.Control name="email" type="email" placeholder="Enter email" value={this.state.email} onChange={this.handleOnChange}/>
           </Form.Group>
+
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" />
+            <Form.Control name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleOnChange}/>
           </Form.Group>
+
           <Button variant="primary" type="submit">
             Login
           </Button>
+          
         </Form>
       </div>
     )

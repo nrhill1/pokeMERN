@@ -7,7 +7,7 @@ export const logUserOut = () => ({type: "LOG_OUT"})
 // Methods
 
 export const fetchUser = (userInfo) => dispatch => {
-  fetch(`http://localhost:4000/login`, {
+  fetch(`http://localhost:5000/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const fetchUser = (userInfo) => dispatch => {
 }
 
 export const signUserUp = (userInfo) => dispatch => {
-  fetch(`http://localhost:4000/users`, {
+  fetch(`http://localhost:5000/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
