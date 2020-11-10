@@ -12,7 +12,7 @@ class Navigation extends Component {
           { localStorage.token ? <Nav.Link className="navLink" href="/user">Profile</Nav.Link>: ""}
           <Nav.Link className="navLink" href="/login">Login</Nav.Link>
           <Nav.Link className="navLink" href="/register">Register</Nav.Link>
-          <Nav.Link className="navLink">Logout</Nav.Link>
+          { localStorage.token ? <Nav.Link className="navLink">Logout</Nav.Link>: ""}
         </Navbar>
       </div>
     )
