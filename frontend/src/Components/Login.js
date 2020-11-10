@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
+import {fetchUser} from '../actions/userActions.js'
 
 class Login extends Component  {
 

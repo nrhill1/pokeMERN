@@ -11,4 +11,12 @@ class Register extends Component {
   }
 }
 
-export default Register;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      signUserUp: (userInfo) => dispatch(signUserUp(userInfo))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)
+
