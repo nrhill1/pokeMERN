@@ -39,7 +39,6 @@ class SearchBar extends Component {
 
     handleChange(event) {
         this.setState({ query: event.target.value })
-        console.log(this.state.query)
     }
 
     componentDidCatch(error, errorInfo) {
