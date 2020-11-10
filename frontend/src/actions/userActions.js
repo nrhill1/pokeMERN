@@ -36,4 +36,5 @@ export const signUserUp = (userInfo) => dispatch => {
     localStorage.setItem("token", data.token)
     dispatch(setUser(data.user))
   })
+  
 }
