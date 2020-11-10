@@ -14,6 +14,11 @@ header:hover {
   text-decoration: underline;
 }
 
+.loginForm {
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
 .navLink {
   margin: 0 auto;
 }

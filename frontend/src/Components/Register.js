@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 class Register extends Component {
 
-    render() {
-        return(
-            <div></div>
-        )
-    }
+  render() {
+    return(
+      <div></div>
+    )
+  }
 }
 
 export default Register;
