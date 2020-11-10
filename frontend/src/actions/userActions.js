@@ -7,7 +7,7 @@ export const logUserOut = () => ({type: "LOG_OUT"})
 // Methods
 
 export const fetchUser = (userInfo) => dispatch => {
-  fetch(`http://localhost:5000/login`, {
+  fetch(`http://localhost:5000/users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,10 +20,13 @@ export const fetchUser = (userInfo) => dispatch => {
     localStorage.setItem("token", data.token)
     dispatch(setUser(data.user))
   })
+  .catch(error =>
+    console.log(error)
+  )
 }
 
 export const signUserUp = (userInfo) => dispatch => {
-  fetch(`http://localhost:5000/register`, {
+  fetch(`http://localhost:5000/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

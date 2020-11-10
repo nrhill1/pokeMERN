@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
   // Define request body
   const { email, password} = req.body;
 
-  // Registration validation
+  // Validation
   if (!email || !password) {
     return res.status(400).json({ msg: "Please complete all fields."})
   }

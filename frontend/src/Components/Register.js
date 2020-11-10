@@ -7,7 +7,6 @@ import {signUserUp} from '../actions/userActions.js'
 
 class Register extends Component {
 
-
   state = {
     username: "",
     password: "",
@@ -30,7 +29,7 @@ class Register extends Component {
   render() {
     return(
       <div className="regForm">
-        <Form>
+        <Form onSubmit={this.onSubmit}>
 
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>

@@ -25,7 +25,7 @@ class Login extends Component  {
   render() {
     return(
       <div className="loginForm">
-        <Form>
+        <Form onSubmit={this.onSubmit}>
 
           <Form.Group controlId="email" >
             <Form.Label>Email address</Form.Label>
@@ -40,7 +40,7 @@ class Login extends Component  {
           <Button variant="primary" type="submit">
             Login
           </Button>
-          
+
         </Form>
       </div>
     )

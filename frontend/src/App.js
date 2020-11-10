@@ -9,8 +9,6 @@ import { Switch, Route } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 
-
-
 class App extends Component {
 
   render() {
@@ -40,5 +38,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, null)(App);
 
