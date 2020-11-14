@@ -72,5 +72,10 @@ class SearchBar extends Component {
         )
     }
 }
-
-export default SearchBar
+const mapStateToProps = (state) => {
+    return {
+      userReducer: state.userReducer
+    }
+}
+  
+export default connect(mapStateToProps, null)(SearchBar)
