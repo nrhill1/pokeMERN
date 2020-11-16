@@ -16,6 +16,7 @@ const userReducer = (state = initialState, action) => {
       };
     case "SET_USER":
       return {
+        ...state,
         loggedIn: !isEmpty(action.payload),
         isLoading: false,
         user: { ...action.payload }
