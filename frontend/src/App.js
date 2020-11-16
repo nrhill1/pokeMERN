@@ -7,8 +7,11 @@ import Register from "./Components/Register.js";
 import Profile from "./Components/Profile.js";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import jwt_decode from "jwt-decode";
 
 class App extends Component {
+  decoded = jwt_decode(this.props.user.token);
+
   render() {
     return (
       <div className="App">
@@ -17,7 +20,7 @@ class App extends Component {
         {!this.props.user.loggedIn ? (
           <h2>Sign Up or Login!</h2>
         ) : (
-          <h2>Welcome, {this.props.user.username}</h2>
+          <h2>Welcome, {this.decoded.username}</h2>
         )}
         <Switch>
           <Route exact path="/" component={SearchBar} />
