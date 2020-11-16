@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 // User Model
 const User = require("../models/User.js");
 
-// @route   POST auth/users
+// @route   POST auth/register
 // @desc    Register new user
 // @access  Public
 
@@ -60,7 +60,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route   POST auth/users
+// @route   POST auth/login
 // @desc    Auth user
 // @access  Public
 
@@ -96,6 +96,22 @@ router.post("/login", (req, res) => {
       );
     });
   });
+});
+
+// @route   GET auth/users
+// @desc    Auth user
+// @access  Public
+
+router.get("/user", auth, (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+      .select("-password")
+      .then((user) => res.json(user));
+    if (!user) throw Error('User does not exist');
+      res.json(user);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
 });
 
 module.exports = router;
