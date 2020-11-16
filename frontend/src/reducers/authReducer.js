@@ -2,7 +2,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   loggedIn: false,
   isLoading: false,
-  user: {}
+  user: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -32,13 +32,13 @@ const userReducer = (state = initialState, action) => {
     case "LOGOUT_SUCCESS":
     case "REGISTER_FAIL":
     case "LOG_OUT":
-      localStorage.clear();
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         loggedIn: false,
         isLoading: false,
-        user: {}
+        user: null
       };
     default:
       return state;

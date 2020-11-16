@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -20,5 +20,17 @@ export const loadUser = () => (dispatch, getState) => {
     config.headers["x-auth-token"] = token;
   }
 
-  Axios.get();
+  axios
+    .get("/api/auth/user", config)
+    .then((res) =>
+      dispatch({
+        type: "USER_LOADED",
+        payload: res.data
+      })
+    )
+    .catch((err) => {
+      dispatchEvent({
+        type: "AUTH_ERROR"
+      });
+    });
 };
