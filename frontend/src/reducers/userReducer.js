@@ -1,5 +1,6 @@
 const initialState = {
   loggedIn: false,
+  isAuthenticated: false,
   user: {}
 }
 
