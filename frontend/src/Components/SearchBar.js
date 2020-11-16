@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Result from "./Result";
 import axios from "axios";
-import { stat } from "fs";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -76,11 +75,5 @@ class SearchBar extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    error: state.error
-  };
-};
 
-export default connect(mapStateToProps, null)(SearchBar);
+export default connect(null, null)(SearchBar);

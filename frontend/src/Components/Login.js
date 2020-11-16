@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { fetchUser } from "../actions/userActions.js";
+import { fetchUser } from "../actions/authActions.js";
 
 class Login extends Component {
   state = {
@@ -18,7 +18,6 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchUser(this.state);
     this.props.history.push("/");
   };
 
@@ -57,17 +56,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    error: state.error
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchUser: (userInfo) => dispatch(fetchUser(userInfo))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, null)(Login);

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { signUserUp } from "../actions/userActions.js";
 
 class Register extends Component {
   state = {
@@ -19,7 +18,6 @@ class Register extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.signUserUp(this.state);
   };
 
   render() {
@@ -71,17 +69,4 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    error: state.error
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signUserUp: (userInfo) => dispatch(signUserUp(userInfo))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(null, null)(Register);

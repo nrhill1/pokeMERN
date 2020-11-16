@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
-import { logUserOut } from "../actions/userActions.js";
+import { logUserOut } from "../actions/authActions.js";
 
 class Navigation extends Component {
   onLogout = (e) => {
@@ -16,28 +16,28 @@ class Navigation extends Component {
           <Nav.Link className="navLink" href="/">
             Home
           </Nav.Link>
-          {this.props.user.loggedIn ? (
+          {this.props.userReducer.loggedIn ? (
             <Nav.Link className="navLink" href="/user">
-              {this.props.user.username}
+              {this.props.userReducer.username}
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.user.loggedIn ? (
+          {!this.props.userReducer.loggedIn ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.user.loggedIn ? (
+          {!this.props.userReducer.loggedIn ? (
             <Nav.Link className="navLink" href="/register">
               Register
             </Nav.Link>
           ) : (
             ""
           )}
-          {this.props.user.loggedIn ? (
+          {this.props.userReducer.loggedIn ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
@@ -52,8 +52,8 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    error: state.error
+    userReducer: state.userReducer,
+    errorReducer: state.error
   };
 };
 

@@ -14,10 +14,10 @@ class App extends Component {
       <div className="App">
         <Navigation />
         <header className="App-header">PokéMERN</header>
-        {!this.props.user.loggedIn ? (
+        {!this.props.token ? (
           <h2>Sign Up or Login!</h2>
         ) : (
-          <h2>Welcome, {this.decoded.username}</h2>
+          <h2>Welcome, {this.props.user.user.username}</h2>
         )}
         <Switch>
           <Route exact path="/" component={SearchBar} />
