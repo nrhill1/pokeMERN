@@ -20,7 +20,12 @@ export const fetchUser = (userInfo) => (dispatch) => {
       localStorage.setItem("token", data.token);
       dispatch(setUser(data.user));
     })
-    .catch((error) => console.log(error));
+    .catch((err) =>
+      dispatch({
+        type: "GET_ERRORS",
+        payload: err.response.data
+      })
+    );
 };
 
 export const signUserUp = (userInfo) => (dispatch) => {
