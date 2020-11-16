@@ -31,7 +31,7 @@ class Navigation extends Component {
             ""
           )}
           {!this.props.userReducer.loggedIn ? (
-            <Nav.Link className="navLink" href="/register">
+            <Nav.Link className="navLink" href="/registration">
               Register
             </Nav.Link>
           ) : (
