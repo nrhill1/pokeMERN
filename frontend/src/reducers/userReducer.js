@@ -1,24 +1,36 @@
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   loggedIn: false,
-  user: {}
-}
+  isLoading: false,
+  user: null
+};
+
+const isEmpty = require("is-empty");
 
 const userReducer = (state = initialState, action) => {
-  switch(action.type){
+  switch (action.type) {
+    case "USER_LOADING":
+      return {
+        ...state,
+        isLoading: true
+      };
     case "SET_USER":
       return {
-        loggedIn: true,
-        user: {...action.payload}
-      }
+        loggedIn: !isEmpty(action.payload),
+        isLoading: false,
+        user: { ...action.payload }
+      };
     case "LOG_OUT":
-      localStorage.clear()
+      localStorage.clear();
       return {
+        token: null,
         loggedIn: false,
-        user: {}
-      }
-    default: return state
+        isLoading: false,
+        user: null
+      };
+    default:
+      return state;
   }
-}
+};
 
-export default userReducer
+export default userReducer;
