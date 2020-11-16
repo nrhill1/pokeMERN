@@ -1,4 +1,5 @@
 import axios from "axios";
+import { returnErrors } from "./errorActions.js";
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -29,7 +30,8 @@ export const loadUser = () => (dispatch, getState) => {
       })
     )
     .catch((err) => {
-      dispatchEvent({
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
         type: "AUTH_ERROR"
       });
     });
