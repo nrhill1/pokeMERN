@@ -1,26 +1,24 @@
-import './App.css';
-import React, { Component} from 'react'
-import SearchBar from './Components/SearchBar.js'
-import Login from './Components/Login.js'
-import Navigation from './Components/Navigation.js'
-import Register from './Components/Register.js'
-import Profile from './Components/Profile.js'
-import { Switch, Route } from 'react-router-dom'
-import {connect} from 'react-redux'
-
+import "./App.css";
+import React, { Component } from "react";
+import SearchBar from "./Components/SearchBar.js";
+import Login from "./Components/Login.js";
+import Navigation from "./Components/Navigation.js";
+import Register from "./Components/Register.js";
+import Profile from "./Components/Profile.js";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
         <Navigation />
-        <header className="App-header">
-            PokéMERN
-        </header>
-        {
-          !this.props.userReducer.loggedIn ? <h2>Sign Up or Login!</h2> : <h2>Welcome, {this.props.userReducer.user.username}</h2>
-        }
+        <header className="App-header">PokéMERN</header>
+        {!this.props.user.loggedIn ? (
+          <h2>Sign Up or Login!</h2>
+        ) : (
+          <h2>Welcome, {this.props.user.username}</h2>
+        )}
         <Switch>
           <Route exact path="/" component={SearchBar} />
           <Route exact path="/user" component={Profile} />
@@ -32,12 +30,11 @@ class App extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
-    userReducer: state.userReducer
-  }
-}
+    user: state.user,
+    error: state.error
+  };
+};
 
 export default connect(mapStateToProps, null)(App);
-

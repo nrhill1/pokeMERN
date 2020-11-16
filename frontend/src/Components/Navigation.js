@@ -16,28 +16,28 @@ class Navigation extends Component {
           <Nav.Link className="navLink" href="/">
             Home
           </Nav.Link>
-          {this.props.userReducer.loggedIn ? (
+          {this.props.user.loggedIn ? (
             <Nav.Link className="navLink" href="/user">
-              {this.props.userReducer.user.username}
+              {this.props.user.username}
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.userReducer.loggedIn ? (
+          {!this.props.user.loggedIn ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.userReducer.loggedIn ? (
+          {!this.props.user.loggedIn ? (
             <Nav.Link className="navLink" href="/register">
               Register
             </Nav.Link>
           ) : (
             ""
           )}
-          {this.props.userReducer.loggedIn ? (
+          {this.props.user.loggedIn ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
