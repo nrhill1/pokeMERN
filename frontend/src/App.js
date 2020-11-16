@@ -7,11 +7,8 @@ import Register from "./Components/Register.js";
 import Profile from "./Components/Profile.js";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import jwt_decode from "jwt-decode";
 
 class App extends Component {
-  decoded = jwt_decode(this.props.user.token);
-
   render() {
     return (
       <div className="App">
