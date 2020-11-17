@@ -37,6 +37,9 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
+// Register User
+export const register = { email, username, password };
+
 // Logout User
 export const logUserOut = () => {
   return {

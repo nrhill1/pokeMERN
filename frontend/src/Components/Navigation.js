@@ -16,28 +16,28 @@ class Navigation extends Component {
           <Nav.Link className="navLink" href="/">
             Home
           </Nav.Link>
-          {this.props.userReducer.loggedIn ? (
+          {this.props.loggedIn ? (
             <Nav.Link className="navLink" href="/user">
-              {this.props.userReducer.username}
+              Profile
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.userReducer.loggedIn ? (
+          {!this.props.loggedIn ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
           ) : (
             ""
           )}
-          {!this.props.userReducer.loggedIn ? (
+          {!this.props.loggedIn ? (
             <Nav.Link className="navLink" href="/registration">
               Register
             </Nav.Link>
           ) : (
             ""
           )}
-          {this.props.userReducer.loggedIn ? (
+          {this.props.loggedIn ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
@@ -52,7 +52,7 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userReducer: state.userReducer,
+    loggedIn: state.auth.loggedIn,
     errorReducer: state.error
   };
 };

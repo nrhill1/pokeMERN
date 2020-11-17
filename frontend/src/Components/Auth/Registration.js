@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
-class Register extends Component {
+class Registration extends Component {
   state = {
     username: "",
     password: "",
@@ -74,4 +74,10 @@ const mapStateToProps = (state) => ({
   error: state.error
 });
 
-export default connect(mapStateToProps, null)(Registration);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: (userInfo) => dispatch(register(userInfo))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
