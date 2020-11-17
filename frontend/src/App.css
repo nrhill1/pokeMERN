@@ -14,6 +14,15 @@ header:hover {
   text-decoration: underline;
 }
 
+h2 {
+  font-family: 'Press Start 2P';
+}
+
+.loginForm {
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
 .navLink {
   margin: 0 auto;
 }
@@ -22,6 +31,11 @@ header:hover {
   margin: 0 auto;
   max-width: fit-content;
   font-family: 'Press Start 2P';
+}
+
+.regForm {
+  max-width: 25rem;
+  margin: 0 auto;
 }
 
 .search {
