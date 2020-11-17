@@ -52,7 +52,7 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: state.auth.loggedIn,
+    loggedIn: state.authReducer.loggedIn,
     errorReducer: state.error
   };
 };

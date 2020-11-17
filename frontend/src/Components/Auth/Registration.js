@@ -72,7 +72,7 @@ class Registration extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.auth.loggedIn,
+  loggedIn: state.authReducer.loggedIn,
   error: state.error
 });
 

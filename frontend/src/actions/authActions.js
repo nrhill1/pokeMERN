@@ -7,7 +7,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: "USER_LOADING" });
 
   // Get token from localstorage
-  const token = getState.auth.token;
+  const token = getState().authReducer.token;
 
   // Headers
   const config = {
@@ -22,7 +22,7 @@ export const loadUser = () => (dispatch, getState) => {
   }
 
   axios
-    .get("/api/auth/user", config)
+    .get("auth/user", config)
     .then((res) =>
       dispatch({
         type: "USER_LOADED",
@@ -50,7 +50,7 @@ export const register = (userInfo) => (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   axios
-    .post("/auth/register", body, config)
+    .post("http://localhost:5000/auth/register", body, config)
     .then((res) =>
       dispatch({
         type: "REGISTER_SUCCESS",
@@ -77,7 +77,7 @@ export const logUserOut = () => {
 // Setup config/headers and token
 export const tokenConfig = (getState) => {
   // Get token from localstorage
-  const token = getState().auth.token;
+  const token = getState().authReducer.token;
 
   // Headers
   const config = {
