@@ -1,12 +1,33 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/authActions.js";
 
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    msg: null
   };
+
+  static propTypes = {
+    loggedIn: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired
+  };
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+    if (error !== prevProps.error) {
+      // Check for register error
+      if (error.id === "LOGIN_FAIL") {
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
 
   onChange = (e) => {
     e.persist();
@@ -17,12 +38,13 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push("/");
+    this.props.register(this.state);
   };
 
   render() {
     return (
-      <div className="loginForm">
+      <div className="regForm">
+        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
@@ -55,4 +77,15 @@ class Login extends Component {
   }
 }
 
-export default connect(null, null)(Login);
+const mapStateToProps = (state) => ({
+  loggedIn: state.authReducer.loggedIn,
+  error: state.error
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userInfo) => dispatch(login(userInfo))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
