@@ -8,7 +8,7 @@ class Login extends Component {
     password: ""
   };
 
-  handleOnChange = (e) => {
+  onChange = (e) => {
     e.persist();
     this.setState(() => ({
       [e.target.name]: e.target.value
@@ -31,7 +31,7 @@ class Login extends Component {
               type="email"
               placeholder="Enter email"
               value={this.state.email}
-              onChange={this.handleOnChange}
+              onChange={this.onChange}
             />
           </Form.Group>
 
@@ -42,7 +42,7 @@ class Login extends Component {
               type="password"
               placeholder="Password"
               value={this.state.password}
-              onChange={this.handleOnChange}
+              onChange={this.onChange}
             />
           </Form.Group>
 

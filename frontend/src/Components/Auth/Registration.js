@@ -1,16 +1,36 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { register } from "../../actions/authActions.js";
 
 class Registration extends Component {
   state = {
+    email: "",
     username: "",
     password: "",
-    email: ""
+    msg: null
   };
 
-  handleOnChange = (e) => {
+  static propTypes = {
+    loggedIn: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired
+  };
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+    if (error !== prevProps.error) {
+      // Check for register error
+      if (error.id === "REGISTER_FAIL") {
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
+  onChange = (e) => {
     e.persist();
     this.setState(() => ({
       [e.target.name]: e.target.value
@@ -25,6 +45,7 @@ class Registration extends Component {
   render() {
     return (
       <div className="regForm">
+        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
@@ -33,7 +54,7 @@ class Registration extends Component {
               type="email"
               placeholder="Enter email"
               value={this.state.email}
-              onChange={this.handleOnChange}
+              onChange={this.onChange}
             />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -47,7 +68,7 @@ class Registration extends Component {
               type="username"
               placeholder="Enter username"
               value={this.state.username}
-              onChange={this.handleOnChange}
+              onChange={this.onChange}
             />
           </Form.Group>
 
@@ -58,7 +79,7 @@ class Registration extends Component {
               type="password"
               placeholder="Password"
               value={this.state.password}
-              onChange={this.handleOnChange}
+              onChange={this.onChange}
             />
           </Form.Group>
 

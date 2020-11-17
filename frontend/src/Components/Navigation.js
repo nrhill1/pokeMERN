@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
 import { logUserOut } from "../actions/authActions.js";
+import PropTypes from "prop-types";
 
 class Navigation extends Component {
+  static propTypes = {
+    logout: PropTypes.func.isRequired
+  };
+
   onLogout = (e) => {
     e.preventDefault();
     this.props.logUserOut();
@@ -20,30 +25,22 @@ class Navigation extends Component {
             <Nav.Link className="navLink" href="/user">
               Profile
             </Nav.Link>
-          ) : (
-            ""
-          )}
+          ) : null}
           {!this.props.loggedIn ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
-          ) : (
-            ""
-          )}
+          ) : null}
           {!this.props.loggedIn ? (
             <Nav.Link className="navLink" href="/registration">
               Register
             </Nav.Link>
-          ) : (
-            ""
-          )}
+          ) : null}
           {this.props.loggedIn ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
-          ) : (
-            ""
-          )}
+          ) : null}
         </Navbar>
       </div>
     );

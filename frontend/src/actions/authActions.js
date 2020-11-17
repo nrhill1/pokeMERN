@@ -22,7 +22,7 @@ export const loadUser = () => (dispatch, getState) => {
   }
 
   axios
-    .get("auth/user", config)
+    .get("http://localhost:5000/auth/user", config)
     .then((res) =>
       dispatch({
         type: "USER_LOADED",
