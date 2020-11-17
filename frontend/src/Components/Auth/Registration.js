@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { register } from "../../actions/authActions.js";
 
 class Registration extends Component {
   state = {
@@ -18,6 +19,7 @@ class Registration extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.props.register(this.state);
   };
 
   render() {

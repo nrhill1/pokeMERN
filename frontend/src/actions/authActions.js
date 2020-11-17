@@ -38,7 +38,34 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-export const register = { email, username, password };
+export const register = (userInfo) => (dispatch) => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+
+  // Request body
+  const body = JSON.stringify(userInfo);
+
+  axios
+    .post("/auth/register", body, config)
+    .then((res) =>
+      dispatch({
+        type: "REGISTER_SUCCESS",
+        payload: res.data
+      })
+    )
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+      );
+      dispatch({
+        type: "REGISTER_FAIL"
+      });
+    });
+};
 
 // Logout User
 export const logUserOut = () => {
