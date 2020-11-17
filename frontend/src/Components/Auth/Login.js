@@ -43,6 +43,7 @@ class Login extends Component {
     e.preventDefault();
     // Attempt Login
     this.props.login(this.state);
+    this.props.history.push("/");
   };
 
   render() {

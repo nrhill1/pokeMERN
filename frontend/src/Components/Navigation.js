@@ -16,28 +16,30 @@ class Navigation extends Component {
   };
 
   render() {
+    const { isAuth, user } = this.props.authReducer;
+
     return (
       <div>
         <Navbar bg="dark" variant="dark" className="navbar">
           <Nav.Link className="navLink" href="/">
             Home
           </Nav.Link>
-          {this.props.isAuth ? (
+          {isAuth ? (
             <Nav.Link className="navLink" href="/user">
-              Profile
+              {user.username}
             </Nav.Link>
           ) : null}
-          {!this.props.isAuth ? (
+          {!isAuth ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
           ) : null}
-          {!this.props.isAuth ? (
+          {!isAuth ? (
             <Nav.Link className="navLink" href="/registration">
               Register
             </Nav.Link>
           ) : null}
-          {this.props.isAuth ? (
+          {isAuth ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
@@ -50,7 +52,7 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.authReducer.isAuth,
+    authReducer: state.authReducer,
     errorReducer: state.error
   };
 };
