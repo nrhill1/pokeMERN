@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store.js";
 import { loadUser } from "./actions/authActions.js";
-
 import SearchBar from "./Components/SearchBar.js";
 import Login from "./Components/Auth/Login.js";
 import Navigation from "./Components/Navigation.js";
@@ -22,11 +21,6 @@ class App extends Component {
         <div className="App">
           <Navigation />
           <header className="App-header">PokéMERN</header>
-          {!this.props.token ? (
-            <h2>Sign Up or Login!</h2>
-          ) : (
-            <h2>Welcome, {}</h2>
-          )}
           <Switch>
             <Route exact path="/" component={SearchBar} />
             <Route exact path="/user" component={Profile} />

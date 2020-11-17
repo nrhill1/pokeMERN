@@ -1,6 +1,6 @@
 const initialState = {
   token: localStorage.getItem("token"),
-  loggedIn: false,
+  isAuth: false,
   isLoading: false,
   user: null
 };
@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
     case "USER_LOADED":
       return {
         ...state,
-        loggedIn: true,
+        isAuth: true,
         isLoading: false,
         user: { ...action.payload }
       };
@@ -25,7 +25,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        loggedIn: true,
+        isAuth: true,
         isLoading: false
       };
     case "AUTH_ERROR":
@@ -37,7 +37,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
-        loggedIn: false,
+        isAuth: false,
         isLoading: false,
         user: null
       };

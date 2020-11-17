@@ -12,7 +12,7 @@ class Login extends Component {
   };
 
   static propTypes = {
-    loggedIn: PropTypes.bool,
+    isAuth: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired
   };
@@ -27,6 +27,9 @@ class Login extends Component {
         this.setState({ msg: null });
       }
     }
+    if (this.props.isAuth) {
+      this.props.history.push("/");
+    }
   }
 
   onChange = (e) => {
@@ -38,6 +41,7 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    // Attempt Login
     this.props.login(this.state);
   };
 
@@ -78,7 +82,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.authReducer.loggedIn,
+  isAuth: state.authReducer.isAuth,
   error: state.error
 });
 

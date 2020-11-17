@@ -13,7 +13,7 @@ class Registration extends Component {
   };
 
   static propTypes = {
-    loggedIn: PropTypes.bool,
+    isAuth: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired
   };
@@ -27,6 +27,9 @@ class Registration extends Component {
       } else {
         this.setState({ msg: null });
       }
+    }
+    if (this.props.isAuth) {
+      this.props.history.push("/");
     }
   }
 
@@ -93,7 +96,7 @@ class Registration extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.authReducer.loggedIn,
+  isAuth: state.authReducer.isAuth,
   error: state.error
 });
 

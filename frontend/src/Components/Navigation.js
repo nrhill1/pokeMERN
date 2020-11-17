@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 class Navigation extends Component {
   static propTypes = {
+    isAuth: PropTypes.bool,
     logout: PropTypes.func.isRequired
   };
 
@@ -21,22 +22,22 @@ class Navigation extends Component {
           <Nav.Link className="navLink" href="/">
             Home
           </Nav.Link>
-          {this.props.loggedIn ? (
+          {this.props.isAuth ? (
             <Nav.Link className="navLink" href="/user">
               Profile
             </Nav.Link>
           ) : null}
-          {!this.props.loggedIn ? (
+          {!this.props.isAuth ? (
             <Nav.Link className="navLink" href="/login">
               Login
             </Nav.Link>
           ) : null}
-          {!this.props.loggedIn ? (
+          {!this.props.isAuth ? (
             <Nav.Link className="navLink" href="/registration">
               Register
             </Nav.Link>
           ) : null}
-          {this.props.loggedIn ? (
+          {this.props.isAuth ? (
             <Nav.Link className="navLink" onClick={this.onLogout}>
               Logout
             </Nav.Link>
@@ -49,7 +50,7 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: state.authReducer.loggedIn,
+    isAuth: state.authReducer.isAuth,
     errorReducer: state.error
   };
 };
