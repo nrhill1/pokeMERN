@@ -1,17 +1,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Button } from "react-bootstrap";
+import { addToTeam } from "../actions/pokeActions.js";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 class Result extends Component {
+  state = {
+    msg: null
+  };
+
+  componentDidUpdate(prevProps) {
+    const { errorReducer } = this.props;
+    if (errorReducer !== prevProps.errorReducer) {
+      // Check for register error
+      if (errorReducer.id === "LOGIN_FAIL") {
+        this.setState({ msg: errorReducer.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
+  onClick = (e) => {
+    e.preventDefault();
+    const { user } = this.props.authReducer;
+    let pokemon = { name: this.props.pokemon.name, id: this.props.pokemon.id };
+    // Add this pokemon to your team
+    this.props.addToTeam(user, pokemon);
+  };
+
   render() {
     const { isAuth, user } = this.props.authReducer;
     if (this.props.pokemon) {
       return (
         <div className="pokemon">
+          {this.state.msg ? (
+            <Alert color="danger">{this.state.msg.msg}</Alert>
+          ) : null}
           <Card border="dark" style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
@@ -28,7 +56,9 @@ class Result extends Component {
                 #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
               </Card.Title>
               {isAuth ? (
-                <Button variant="primary">Add to {user}'s team</Button>
+                <Button variant="primary" onClick={this.onClick}>
+                  Add to {user}'s team
+                </Button>
               ) : null}
             </Card.Body>
           </Card>
@@ -44,4 +74,10 @@ const mapStateToProps = (state) => ({
   errorReducer: state.errorReducer
 });
 
-export default connect(mapStateToProps, null)(Result);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToTeam: (username, pokemon) => dispatch(addToTeam(username, pokemon))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Result);

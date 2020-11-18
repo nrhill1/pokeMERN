@@ -1,6 +1,7 @@
 const initialState = {
   pokemon: [],
-  isLoading: false
+  isLoading: false,
+  msg: null
 };
 
 const pokeReducer = (state = initialState, action) => {
@@ -9,6 +10,10 @@ const pokeReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: action.payload
+      };
+    case "CATCH_FAIL":
+      return {
+        ...state
       };
     default:
       return state;
