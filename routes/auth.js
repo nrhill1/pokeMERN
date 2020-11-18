@@ -29,32 +29,38 @@ router.post("/register", (req, res) => {
     if (user)
       return res.status(400).json({ msg: "This email is already in use." });
 
-    // Define new user based on schema
-    const newUser = User({
-      username,
-      email,
-      password,
-      pokemon: []
-    });
+    User.findOne({ username }).then((user) => {
+      if (user)
+        return res
+          .status(400)
+          .json({ msg: "This username is already in use." });
+      // Define new user based on schema
+      const newUser = User({
+        username,
+        email,
+        password,
+        pokemon: []
+      });
 
-    // Create salt & hash
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-        newUser.save().then((user) => {
-          jwt.sign(
-            { id: user.id },
-            config.get("jwtSecret"),
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token,
-                user
-              });
-            }
-          );
+      // Create salt & hash
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser.save().then((user) => {
+            jwt.sign(
+              { id: user.id },
+              config.get("jwtSecret"),
+              { expiresIn: 3600 },
+              (err, token) => {
+                if (err) throw err;
+                res.json({
+                  token,
+                  user
+                });
+              }
+            );
+          });
         });
       });
     });
