@@ -5,7 +5,8 @@ const config = require("config");
 require("dotenv").config();
 
 // Import Routes
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth.js");
+const pokeRoutes = require("./routes/pokemon.js");
 
 // Set up Express
 const app = express();
@@ -28,8 +29,9 @@ mongoose
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
-// User Routes
+// Auth Routes
 app.use("/auth", authRoutes);
+app.use("/poke", pokeRoutes);
 
 const port = process.env.PORT || 5000;
 

@@ -8,6 +8,7 @@ String.prototype.capitalize = function() {
 
 class Result extends Component {
   render() {
+    const { isAuth, user } = this.props.authReducer;
     if (this.props.pokemon) {
       return (
         <div className="pokemon">
@@ -26,8 +27,8 @@ class Result extends Component {
               <Card.Title>
                 #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
               </Card.Title>
-              {this.props.isAuth ? (
-                <Button variant="primary">Add to my team</Button>
+              {isAuth ? (
+                <Button variant="primary">Add to {user}'s team</Button>
               ) : null}
             </Card.Body>
           </Card>
@@ -39,7 +40,7 @@ class Result extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.authReducer.isAuth,
+  authReducer: state.authReducer,
   errorReducer: state.errorReducer
 });
 
