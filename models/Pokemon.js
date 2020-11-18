@@ -6,6 +6,10 @@ const PokeSchema = new Schema({
   name: {
     type: String,
     required: true
+  },
+  num: {
+    type: Number,
+    required: true
   }
 });
 

@@ -29,11 +29,13 @@ router.post("/register", (req, res) => {
     if (user)
       return res.status(400).json({ msg: "This email is already in use." });
 
+    // Check if username is in database
     User.findOne({ username }).then((user) => {
       if (user)
         return res
           .status(400)
           .json({ msg: "This username is already in use." });
+
       // Define new user based on schema
       const newUser = User({
         username,

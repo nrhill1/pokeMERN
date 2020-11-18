@@ -23,7 +23,9 @@ class Result extends Component {
               style={{ maxWidth: "8rem", margin: "0 auto" }}
             />
             <Card.Body>
-              <Card.Title>{this.props.pokemon.name.capitalize()}</Card.Title>
+              <Card.Title>
+                #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
+              </Card.Title>
               {this.props.isAuth ? (
                 <Button variant="primary">Add to my team</Button>
               ) : null}
