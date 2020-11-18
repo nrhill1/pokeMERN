@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const PokeSchema = new Schema({
-  name: {
-    type: String,
+  id: {
+    type: Number,
     required: true
   },
-  num: {
-    type: Number,
+  name: {
+    type: String,
     required: true
   }
 });
