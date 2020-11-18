@@ -13,7 +13,7 @@ class Login extends Component {
 
   static propTypes = {
     isAuth: PropTypes.bool,
-    error: PropTypes.object.isRequired,
+    errorReducer: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired
   };
 

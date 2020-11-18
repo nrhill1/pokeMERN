@@ -14,21 +14,21 @@ class Registration extends Component {
 
   static propTypes = {
     isAuth: PropTypes.bool,
-    error: PropTypes.object.isRequired,
+    errorReducer: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired
   };
 
   componentDidUpdate(prevProps) {
-    const { error } = this.props;
-    if (error !== prevProps.error) {
-      // Check for register error
-      if (error.id === "REGISTER_FAIL") {
-        this.setState({ msg: error.msg });
+    const { errorReducer, isAuth } = this.props;
+    if (errorReducer !== prevProps.errorReducer) {
+      // Check for register errorReducer
+      if (errorReducer.id === "REGISTER_FAIL") {
+        this.setState({ msg: errorReducer.msg });
       } else {
         this.setState({ msg: null });
       }
     }
-    if (this.props.isAuth) {
+    if (isAuth) {
       this.props.history.push("/");
     }
   }
@@ -99,7 +99,7 @@ class Registration extends Component {
 
 const mapStateToProps = (state) => ({
   isAuth: state.authReducer.isAuth,
-  error: state.error
+  errorReducer: state.errorReducer
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -59,10 +59,10 @@ export const register = (userInfo) => (dispatch) => {
     )
     .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
       );
       dispatch({
-        type: "LOGIN_FAIL"
+        type: "REGISTER_FAIL"
       });
     });
 };
