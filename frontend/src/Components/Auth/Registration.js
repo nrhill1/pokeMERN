@@ -23,7 +23,7 @@ class Registration extends Component {
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === "REGISTER_FAIL") {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg });
       } else {
         this.setState({ msg: null });
       }
@@ -48,7 +48,9 @@ class Registration extends Component {
   render() {
     return (
       <div className="regForm">
-        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+        {this.state.msg ? (
+          <Alert color="danger">{this.state.msg.msg}</Alert>
+        ) : null}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>

@@ -18,16 +18,16 @@ class Login extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    const { error } = this.props;
-    if (error !== prevProps.error) {
+    const { errorReducer, isAuth } = this.props;
+    if (errorReducer !== prevProps.errorReducer) {
       // Check for register error
-      if (error.id === "LOGIN_FAIL") {
-        this.setState({ msg: error.msg.msg });
+      if (errorReducer.id === "LOGIN_FAIL") {
+        this.setState({ msg: errorReducer.msg });
       } else {
         this.setState({ msg: null });
       }
     }
-    if (this.props.isAuth) {
+    if (isAuth) {
       this.props.history.push("/");
     }
   }
@@ -43,13 +43,14 @@ class Login extends Component {
     e.preventDefault();
     // Attempt Login
     this.props.login(this.state);
-    this.props.history.push("/");
   };
 
   render() {
     return (
       <div className="regForm">
-        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+        {this.state.msg ? (
+          <Alert color="danger">{this.state.msg.msg}</Alert>
+        ) : null}
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
@@ -84,7 +85,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => ({
   isAuth: state.authReducer.isAuth,
-  error: state.error
+  errorReducer: state.errorReducer
 });
 
 const mapDispatchToProps = (dispatch) => {
