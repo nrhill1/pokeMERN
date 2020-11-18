@@ -109,7 +109,7 @@ router.post("/login", (req, res) => {
 
 // @route   GET auth/users
 // @desc    Auth user
-// @access  Public
+// @access  Private
 
 router.get("/user", auth, async (req, res) => {
   try {

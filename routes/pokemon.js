@@ -7,3 +7,7 @@ const auth = require("../middleware/auth");
 
 // Pokémon Model
 import Pokemon from "../models/Pokemon.js";
+
+// @route   POST poke/add
+// @desc    Add pokemon to user team
+// @access  Public
