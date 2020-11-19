@@ -16,6 +16,13 @@ const pokeReducer = (state = initialState, action) => {
         ...state,
         msg: action.payload.msg
       };
+    case "RELEASE":
+      return {
+        ...state,
+        pokemon: state.pokemon.filter(
+          (pokemon) => pokemon._id !== action.payload
+        )
+      };
     default:
       return state;
   }

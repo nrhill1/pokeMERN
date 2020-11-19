@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Alert } from "react-bootstrap";
+import Chip from "@material-ui/core/Chip";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -11,40 +12,17 @@ class Pokemon extends Component {
     msg: null
   };
 
-  /*
-  componentDidUpdate(prevProps) {
-    const { errorReducer } = this.props;
-    if (errorReducer !== prevProps.errorReducer) {
-      // Check for register error
-      if (errorReducer.id === "LOGIN_FAIL") {
-        this.setState({ msg: errorReducer.msg });
-      } else {
-        this.setState({ msg: null });
-      }
-    }
-  }
-
-
-  onClick = (e) => {
-    e.preventDefault();
-    const { user } = this.props.authReducer;
-    const username = user.username;
-    let pokemon = {
-      name: this.props.pokemon.name,
-      id: this.props.pokemon.id
-    };
-    // Remove this pokemon from your team
-  };
-  */
-
   render() {
-    const { isAuth, user } = this.props.authReducer;
+    // const { isAuth, user } = this.props.authReducer;
     return (
       <div className="pokemon">
         {this.state.msg ? (
           <Alert color="danger">{this.state.msg.msg}</Alert>
         ) : null}
-        <Card border="dark" style={{ width: "18rem" }}>
+        <Card
+          border="dark"
+          style={{ width: "18rem", margin: "6px", display: "inline-block" }}
+        >
           <Card.Img
             variant="top"
             src={this.props.pokemon.sprites[0]}
@@ -60,6 +38,11 @@ class Pokemon extends Component {
               #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
             </Card.Title>
           </Card.Body>
+          <Chip
+            label="Remove from your team"
+            onDelete={onDelete}
+            color="secondary"
+          />
         </Card>
       </div>
     );
