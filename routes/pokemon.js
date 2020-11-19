@@ -34,16 +34,19 @@ router.put("/add", auth, async (req, res) => {
 });
 
 router.put("/del", auth, async (req, res) => {
-  // Find user
-  User.findOne({ username: req.body.username }).then((user) => {
-    // Try updating Pokemon array
-    const offTeam = user
-      .updateOne({}, { $pull: { pokemon: { _id: req.body.id } } })
-      .then((offTeam) => {
-        res.status(200).json(offTeam);
-      });
-    if (!offTeam) return res.status(400).json({ msg: e.message });
-  });
+  const remove = await User.updateMany(
+    { username: req.body.username },
+    { $pull: { pokemon: { _id: { $in: [req.body.id] } } } },
+    function(err, data) {
+      console.log("ERROR:", err, data);
+    }
+  )
+    .then((offTeam) => {
+      res.status(200).json(offTeam);
+    })
+    .catch((e) => {
+      return res.status(400).json({ msg: e.message });
+    });
 });
 
 module.exports = router;

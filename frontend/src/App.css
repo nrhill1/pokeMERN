@@ -7,15 +7,16 @@
 
 header {
   font-size: 6em;
-  font-family: 'Pokemon';
+  font-family: "Pokemon";
 }
 
 header:hover {
   text-decoration: underline;
 }
 
+h1,
 h2 {
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
 }
 
 .loginForm {
@@ -30,7 +31,7 @@ h2 {
 .pokemon {
   margin: 0 auto;
   max-width: fit-content;
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
 }
 
 .regForm {
@@ -40,7 +41,7 @@ h2 {
 
 .search {
   margin-bottom: 20px;
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
 }
 
 .searchInput {
