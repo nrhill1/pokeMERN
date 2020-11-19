@@ -21,7 +21,6 @@ router.put("/add", auth, async (req, res) => {
     sprites: req.body.pokemon.sprites
   });
 
-  console.log(newPoke);
   // Find user
   User.findOne({ username: req.body.username }).then((user) => {
     // Try updating Pokemon array
@@ -31,6 +30,19 @@ router.put("/add", auth, async (req, res) => {
         res.status(200).json(onTeam);
       });
     if (!onTeam) return res.status(400).json({ msg: e.message });
+  });
+});
+
+router.put("/del", auth, async (req, res) => {
+  // Find user
+  User.findOne({ username: req.body.username }).then((user) => {
+    // Try updating Pokemon array
+    const offTeam = user
+      .updateOne({}, { $pull: { pokemon: { _id: req.body.id } } })
+      .then((offTeam) => {
+        res.status(200).json(offTeam);
+      });
+    if (!offTeam) return res.status(400).json({ msg: e.message });
   });
 });
 

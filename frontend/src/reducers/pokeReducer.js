@@ -11,17 +11,18 @@ const pokeReducer = (state = initialState, action) => {
         ...state,
         pokemon: action.payload
       };
-    case "CATCH_FAIL":
-      return {
-        ...state,
-        msg: action.payload.msg
-      };
     case "RELEASE":
       return {
         ...state,
         pokemon: state.pokemon.filter(
           (pokemon) => pokemon._id !== action.payload
         )
+      };
+    case "RELEASE_FAIL":
+    case "CATCH_FAIL":
+      return {
+        ...state,
+        msg: action.payload
       };
     default:
       return state;

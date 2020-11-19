@@ -19,3 +19,21 @@ export const addToTeam = (username, pokemon) => (dispatch, getState) => {
       );
     });
 };
+
+export const delFromTeam = (username, id) => (dispatch, getState) => {
+  const body = JSON.stringify({ username, id });
+
+  axios
+    .put("http://localhost:5000/poke/del", body, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: "RELEASE",
+        payload: res.data
+      });
+    })
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "RELEASE_FAIL")
+      );
+    });
+};

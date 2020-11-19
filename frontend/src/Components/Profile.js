@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Pokemon from "./Containers/Pokemon.js";
+import { delFromTeam } from "../actions/pokeActions.js";
 
 class Profile extends Component {
   render() {
@@ -10,7 +11,14 @@ class Profile extends Component {
         <div className="profile">
           <h1>{user.username}'s Team:</h1>
           {user.pokemon.map((poke) => {
-            return <Pokemon pokemon={poke} />;
+            const onDelete = (e) => {
+              e.preventDefault();
+              const { user } = this.props.authReducer;
+              const username = user.username;
+              const id = poke._id;
+              this.props.delFromTeam(username, id);
+            };
+            return <Pokemon pokemon={poke} onDelete={onDelete} />;
           })}
         </div>
       );
@@ -25,4 +33,10 @@ const mapStateToProps = (state) => ({
   pokeReducer: state.pokeReducer
 });
 
-export default connect(mapStateToProps, null)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    delFromTeam: (username, id) => dispatch(delFromTeam(username, id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
