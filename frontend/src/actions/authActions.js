@@ -18,9 +18,6 @@ export const loadUser = () => (dispatch, getState) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "AUTH_ERROR")
       );
-      dispatch({
-        type: "AUTH_ERROR"
-      });
     });
 };
 
@@ -99,14 +96,10 @@ export const tokenConfig = (getState) => {
   // Headers
   const config = {
     headers: {
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      "x-auth-token": token
     }
   };
-
-  // If token, add to headers
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
 
   return config;
 };
