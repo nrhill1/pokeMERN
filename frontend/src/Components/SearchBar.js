@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Result from "./Result";
+import Result from "./Containers/Result.js";
 import axios from "axios";
 
 class SearchBar extends Component {

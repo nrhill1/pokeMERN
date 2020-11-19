@@ -10,6 +10,12 @@ const PokeSchema = new Schema({
   name: {
     type: String,
     required: true
+  },
+  sprites: {
+    type: Array,
+    required: true,
+    default: void 0,
+    maxlength: 2
   }
 });
 

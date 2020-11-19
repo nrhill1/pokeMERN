@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Button, Alert } from "react-bootstrap";
-import { addToTeam } from "../actions/pokeActions.js";
+import { addToTeam } from "../../actions/pokeActions.js";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -28,7 +28,14 @@ class Result extends Component {
     e.preventDefault();
     const { user } = this.props.authReducer;
     const username = user.username;
-    let pokemon = { name: this.props.pokemon.name, id: this.props.pokemon.id };
+    let pokemon = {
+      name: this.props.pokemon.name,
+      id: this.props.pokemon.id,
+      sprites: [
+        this.props.pokemon.sprites["front_default"],
+        this.props.pokemon.sprites["back_default"]
+      ]
+    };
     // Add this pokemon to your team
     this.props.addToTeam(username, pokemon);
   };
