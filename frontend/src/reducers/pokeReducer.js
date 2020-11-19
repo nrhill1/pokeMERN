@@ -13,7 +13,8 @@ const pokeReducer = (state = initialState, action) => {
       };
     case "CATCH_FAIL":
       return {
-        ...state
+        ...state,
+        msg: action.payload.msg
       };
     default:
       return state;

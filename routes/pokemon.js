@@ -17,7 +17,8 @@ router.put("/add", auth, async (req, res) => {
   // Create new pokemon to be inserted into array
   const newPoke = Pokemon({
     id: req.body.pokemon.id,
-    name: req.body.pokemon.name
+    name: req.body.pokemon.name,
+    sprites: req.body.pokemon.sprites
   });
 
   console.log(newPoke);

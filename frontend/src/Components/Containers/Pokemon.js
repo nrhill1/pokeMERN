@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Button, Alert } from "react-bootstrap";
-import { addToTeam } from "../../actions/pokeActions.js";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-class Result extends Component {
+class Pokemon extends Component {
   state = {
     msg: null
   };
@@ -16,29 +15,26 @@ class Result extends Component {
     const { errorReducer } = this.props;
     if (errorReducer !== prevProps.errorReducer) {
       // Check for register error
-      if (errorReducer.id === "CATCH_FAIL") {
-        this.setState({ msg: pokeReducer.msg });
+      if (errorReducer.id === "LOGIN_FAIL") {
+        this.setState({ msg: errorReducer.msg });
       } else {
         this.setState({ msg: null });
       }
     }
   }
 
+  /*
   onClick = (e) => {
     e.preventDefault();
     const { user } = this.props.authReducer;
     const username = user.username;
     let pokemon = {
       name: this.props.pokemon.name,
-      id: this.props.pokemon.id,
-      sprites: [
-        this.props.pokemon.sprites["front_default"],
-        this.props.pokemon.sprites["back_default"]
-      ]
+      id: this.props.pokemon.id
     };
-    // Add this pokemon to your team
-    this.props.addToTeam(username, pokemon);
+    // Remove this pokemon from your team
   };
+  */
 
   render() {
     const { isAuth, user } = this.props.authReducer;
@@ -81,11 +77,11 @@ const mapStateToProps = (state) => ({
   authReducer: state.authReducer,
   errorReducer: state.errorReducer
 });
-
+/*
 const mapDispatchToProps = (dispatch) => {
   return {
     addToTeam: (username, pokemon) => dispatch(addToTeam(username, pokemon))
   };
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Result);
+*/
+export default connect(mapStateToProps, null)(Pokemon);
