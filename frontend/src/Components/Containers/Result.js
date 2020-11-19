@@ -12,6 +12,7 @@ class Result extends Component {
     msg: null
   };
 
+  /*
   componentDidUpdate(prevProps) {
     const { errorReducer } = this.props;
     if (errorReducer !== prevProps.errorReducer) {
@@ -23,7 +24,7 @@ class Result extends Component {
       }
     }
   }
-
+  */
   onClick = (e) => {
     e.preventDefault();
     const { user } = this.props.authReducer;
@@ -79,7 +80,8 @@ class Result extends Component {
 
 const mapStateToProps = (state) => ({
   authReducer: state.authReducer,
-  errorReducer: state.errorReducer
+  errorReducer: state.errorReducer,
+  pokeReducer: state.pokeReducer
 });
 
 const mapDispatchToProps = (dispatch) => {
