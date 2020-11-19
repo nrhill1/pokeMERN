@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Alert } from "react-bootstrap";
 import { addToTeam } from "../actions/pokeActions.js";
 
 String.prototype.capitalize = function() {
@@ -27,9 +27,10 @@ class Result extends Component {
   onClick = (e) => {
     e.preventDefault();
     const { user } = this.props.authReducer;
+    const username = user.username;
     let pokemon = { name: this.props.pokemon.name, id: this.props.pokemon.id };
     // Add this pokemon to your team
-    this.props.addToTeam(user, pokemon);
+    this.props.addToTeam(username, pokemon);
   };
 
   render() {
@@ -57,7 +58,7 @@ class Result extends Component {
               </Card.Title>
               {isAuth ? (
                 <Button variant="primary" onClick={this.onClick}>
-                  Add to {user}'s team
+                  Add to {user.username}'s team
                 </Button>
               ) : null}
             </Card.Body>

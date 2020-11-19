@@ -6,23 +6,8 @@ export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: "USER_LOADING" });
 
-  // Get token from localstorage
-  const token = getState().authReducer.token;
-
-  // Headers
-  const config = {
-    headers: {
-      "Content-type": "application/json"
-    }
-  };
-
-  // If token, add to headers
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-
   axios
-    .get("http://localhost:5000/auth/user", config)
+    .get("http://localhost:5000/auth/user", tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: "USER_LOADED",
@@ -30,7 +15,9 @@ export const loadUser = () => (dispatch, getState) => {
       })
     )
     .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "AUTH_ERROR")
+      );
       dispatch({
         type: "AUTH_ERROR"
       });

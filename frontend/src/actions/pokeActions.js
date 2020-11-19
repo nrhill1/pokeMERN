@@ -1,29 +1,15 @@
 import axios from "axios";
 import { returnErrors } from "./errorActions.js";
+import { tokenConfig } from "./authActions.js";
 
 export const addToTeam = (username, pokemon) => (dispatch, getState) => {
-  // Get token from localstorage
-  const token = getState().authReducer.token;
-
-  // Headers
-  const config = {
-    headers: {
-      "Content-type": "application/json"
-    }
-  };
-
-  // If token, add to headers
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-
   const body = JSON.stringify({ username, pokemon });
 
   axios
-    .post("http://localhost:5000/poke/add", body, config)
+    .put("http://localhost:5000/poke/add", body, tokenConfig(getState))
     .then((res) => {
       dispatch({
-        type: "CATCH_SUCCESS",
+        type: "CATCH_POKE",
         payload: res.data
       });
     })
@@ -31,8 +17,5 @@ export const addToTeam = (username, pokemon) => (dispatch, getState) => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "CATCH_FAIL")
       );
-      dispatch({
-        type: "CATCH_FAIL"
-      });
     });
 };

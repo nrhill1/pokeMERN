@@ -13,25 +13,31 @@ const User = require("../models/User.js");
 // @desc    Add pokemon to user team
 // @access  Private
 
-router.post("/add", auth, (req, res) => {
-  // Request body
-  const { username, poke } = req.body;
-
-  // Create new Pokemon based on schema
+router.put("/add", auth, async (req, res) => {
+  // Create new pokemon to be inserted into array
   const newPoke = Pokemon({
-    id: poke.id,
-    name: poke.name
+    id: req.body.pokemon.id,
+    name: req.body.pokemon.name
   });
 
   // Find user
-  User.findOne({ username }).then((user) => {
+  User.findOne({ username: req.body.username }).then((user) => {
     // Try updating Pokemon array
     try {
-      const pokeAdd = await user.update({ $push: {pokemon: newPoke}})
-      if (!pokeAdd) throw Error(`Something went wrong adding ${poke.name} to ${username}'s team...`);
+      const onTeam = user.update({ $push: { pokemon: newPoke } });
       res.status(200).json(user.pokemon);
     } catch (e) {
       res.status(400).json({ msg: e.message });
     }
   });
 });
+
+module.exports = router;
+
+/*
+if (!pokeAdd)
+        return res.status(400).json({
+          status: "error",
+          msg: `Something went wrong adding ${poke.name} to ${username}'s team...`
+        });
+*/

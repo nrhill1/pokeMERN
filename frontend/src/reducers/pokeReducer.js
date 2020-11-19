@@ -6,7 +6,7 @@ const initialState = {
 
 const pokeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CATCH_SUCCESS":
+    case "CATCH_POKE":
       return {
         ...state,
         pokemon: action.payload
