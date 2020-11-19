@@ -5,14 +5,17 @@ import Pokemon from "./Containers/Pokemon.js";
 class Profile extends Component {
   render() {
     const { user } = this.props.authReducer;
-    return (
-      <div className="profile">
-        <h1>{user.username}'s Team:</h1>
-        {user.pokemon.map((poke) => {
-          return <Pokemon pokemon={poke} />;
-        })}
-      </div>
-    );
+    if (user) {
+      return (
+        <div className="profile">
+          <h1>{user.username}'s Team:</h1>
+          {user.pokemon.map((poke) => {
+            return <Pokemon pokemon={poke} />;
+          })}
+        </div>
+      );
+    }
+    return null;
   }
 }
 
