@@ -24,9 +24,12 @@ router.put("/add", auth, async (req, res) => {
   // Find user
   User.findOne({ username: req.body.username }).then((user) => {
     // Try updating Pokemon array
-      const onTeam = await user.update({ $push: { pokemon: newPoke } });
-      res.status(200).json(onTeam);
-      res.status(400).json({ msg: e.message });
+    const onTeam = user
+      .updateOne({ $push: { pokemon: newPoke } })
+      .then((onTeam) => {
+        res.status(200).json(onTeam);
+      });
+    if (!onTeam) return res.status(400).json({ msg: e.message });
   });
 });
 
