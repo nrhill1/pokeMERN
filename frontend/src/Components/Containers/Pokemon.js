@@ -12,17 +12,6 @@ class Pokemon extends Component {
     msg: null
   };
 
-  componentDidUpdate(prevProps) {
-    const { pokeReducer } = this.props;
-    if (pokeReducer !== prevProps.pokeReducer) {
-      // Check for error
-      if (pokeReducer.msg.id === "RELEASE_FAIL") {
-        this.setState({ msg: pokeReducer.msg });
-      } else {
-        this.setState({ msg: null });
-      }
-    }
-  }
   render() {
     // const { isAuth, user } = this.props.authReducer;
     return (

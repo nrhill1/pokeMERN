@@ -5,6 +5,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const axios = require("axios");
+const mongoose = require("mongoose");
 
 // Pokémon Model
 const Pokemon = require("../models/Pokemon.js");
@@ -36,13 +37,14 @@ router.put("/add", auth, async (req, res) => {
 router.put("/del", auth, async (req, res) => {
   const remove = await User.updateMany(
     { username: req.body.username },
-    { $pull: { pokemon: { _id: { $in: [req.body.id] } } } },
-    function(err, data) {
-      console.log("ERROR:", err, data);
+    {
+      $pull: {
+        pokemon: { _id: { $in: [mongoose.Types.ObjectId(req.body.id)] } }
+      }
     }
   )
     .then((offTeam) => {
-      res.status(200).json(offTeam);
+      res.status(200).json({ msg: offTeam });
     })
     .catch((e) => {
       return res.status(400).json({ msg: e.message });
