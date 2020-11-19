@@ -25,7 +25,7 @@ router.put("/add", auth, async (req, res) => {
     // Try updating Pokemon array
     try {
       const onTeam = user.update({ $push: { pokemon: newPoke } });
-      res.status(200).json(user.pokemon);
+      res.status(200).json(onTeam);
     } catch (e) {
       res.status(400).json({ msg: e.message });
     }
