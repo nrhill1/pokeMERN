@@ -118,6 +118,17 @@ router.post("/login", (req, res) => {
 // @access  Private
 
 router.get("/user", auth, async (req, res) => {
+  const user = await User.findById(req.user.id)
+    .select("-password")
+    .then((user) => {
+      return res.json(user);
+    });
+  if (!user) return res.status(400).json({ msg: e.message });
+});
+
+module.exports = router;
+
+/*
   try {
     const user = await User.findById(req.user.id)
       .select("-password")
@@ -126,6 +137,4 @@ router.get("/user", auth, async (req, res) => {
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
-});
-
-module.exports = router;
+*/

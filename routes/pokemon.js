@@ -20,15 +20,13 @@ router.put("/add", auth, async (req, res) => {
     name: req.body.pokemon.name
   });
 
+  console.log(newPoke);
   // Find user
   User.findOne({ username: req.body.username }).then((user) => {
     // Try updating Pokemon array
-    try {
-      const onTeam = user.update({ $push: { pokemon: newPoke } });
+      const onTeam = await user.update({ $push: { pokemon: newPoke } });
       res.status(200).json(onTeam);
-    } catch (e) {
       res.status(400).json({ msg: e.message });
-    }
   });
 });
 
