@@ -11,6 +11,18 @@ class Pokemon extends Component {
     msg: null
   };
 
+  componentDidUpdate(prevProps) {
+    const { errorReducer } = this.props;
+    if (errorReducer !== prevProps.errorReducer) {
+      // Check for delete error
+      if (errorReducer.id === "RELEASE_FAIL") {
+        this.setState({ msg: errorReducer.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
   render() {
     // const { isAuth, user } = this.props.authReducer;
     return (

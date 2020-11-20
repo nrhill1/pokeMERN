@@ -15,7 +15,7 @@ class Result extends Component {
   componentDidUpdate(prevProps) {
     const { errorReducer } = this.props;
     if (errorReducer !== prevProps.errorReducer) {
-      // Check for register error
+      // Check for add error
       if (errorReducer.id === "CATCH_FAIL") {
         this.setState({ msg: errorReducer.msg });
       } else {

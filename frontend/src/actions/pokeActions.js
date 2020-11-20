@@ -14,7 +14,12 @@ export const addToTeam = (username, pokemon) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(err.response.data, err.response.status, "CATCH_FAIL");
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "CATCH_FAIL")
+      );
+      dispatch({
+        type: "CATCH_FAIL"
+      });
     });
 };
 
@@ -30,6 +35,11 @@ export const delFromTeam = (username, id) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(returnErrors(err));
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "RELEASE_FAIL")
+      );
+      dispatch({
+        type: "RELEASE_FAIL"
+      });
     });
 };
