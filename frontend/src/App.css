@@ -18,6 +18,10 @@ header:hover {
   -webkit-transition: all 0.75s ease-in-out;
   -moz-transition: all 0.75s ease-in-out;
   transition: all 0.75s ease-in-out;
+  text-shadow: 5px 9px 13px rgba(60, 90, 166, 0.73);
+  -webkit-transition: all 0.75s ease-in-out;
+  -moz-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
 }
 
 h1,
