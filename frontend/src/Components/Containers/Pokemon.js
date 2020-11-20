@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, Alert } from "react-bootstrap";
-import Chip from "@material-ui/core/Chip";
+import { Alert, Card, Button } from "react-bootstrap";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -21,29 +20,49 @@ class Pokemon extends Component {
         ) : null}
         <Card
           border="dark"
-          style={{ width: "18rem", margin: "6px", display: "inline-block" }}
+          style={{
+            maxHeight: "400px",
+            maxWidth: "fit-content",
+            margin: "6px",
+            display: "inline-block"
+          }}
         >
           <Card.Img
             variant="top"
             src={this.props.pokemon.sprites[0]}
-            style={{ maxWidth: "8rem", margin: "0 auto" }}
+            style={{
+              maxWidth: "8rem",
+              maxHeight: "8rem",
+              margin: "0 auto",
+              display: "inline-block"
+            }}
           />
           <Card.Img
             variant="top"
             src={this.props.pokemon.sprites[1]}
-            style={{ maxWidth: "8rem", margin: "0 auto" }}
+            style={{
+              maxWidth: "8rem",
+              maxHeight: "8rem",
+              margin: "0 auto",
+              display: "inline-block"
+            }}
           />
           <Card.Body>
             <Card.Title>
               #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
             </Card.Title>
           </Card.Body>
-          <Chip
-            label="Remove from your team"
-            onDelete={this.props.onDelete}
-            color="secondary"
-            style={{ marginBottom: "2px" }}
-          />
+          <Button
+            variant="danger"
+            onClick={this.props.onDelete}
+            style={{
+              marginBottom: "4px",
+              maxWidth: "200px",
+              maxHeight: "70px"
+            }}
+          >
+            Remove from team
+          </Button>
         </Card>
       </div>
     );

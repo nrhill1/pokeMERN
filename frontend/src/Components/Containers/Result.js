@@ -32,7 +32,7 @@ class Result extends Component {
     const { isAuth, user } = this.props.authReducer;
     if (this.props.pokemon) {
       return (
-        <div className="pokemon">
+        <div className="result">
           {this.state.msg ? (
             <Alert color="danger">{this.state.msg.msg}</Alert>
           ) : null}

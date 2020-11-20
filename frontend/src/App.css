@@ -12,6 +12,9 @@ header {
 
 header:hover {
   text-decoration: underline;
+  -webkit-transition: all 0.75s ease-in-out;
+  -moz-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
 }
 
 h1,
@@ -29,6 +32,13 @@ h2 {
 }
 
 .pokemon {
+  float: left;
+  max-width: fit-content;
+  max-height: 200px;
+  font-family: "Press Start 2P";
+}
+
+.result {
   margin: 0 auto;
   max-width: fit-content;
   font-family: "Press Start 2P";

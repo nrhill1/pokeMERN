@@ -24,13 +24,17 @@ router.put("/add", auth, async (req, res) => {
 
   // Find user
   User.findOne({ username: req.body.username }).then((user) => {
-    // Try updating Pokemon array
-    const onTeam = user
-      .updateOne({ $push: { pokemon: newPoke } })
-      .then((onTeam) => {
-        res.status(200).json(onTeam);
-      });
-    if (!onTeam) return res.status(400).json({ msg: e.message });
+    if (user.pokemon.length < 6) {
+      // Try updating Pokemon array
+      const onTeam = user
+        .updateOne({ $push: { pokemon: newPoke } })
+        .then((onTeam) => {
+          res.status(200).json(onTeam);
+        });
+      if (!onTeam) return res.status(400).json({ msg: e.message });
+    } else {
+      return res.status(400).json({ msg: "User team at max capacity!" });
+    }
   });
 });
 
