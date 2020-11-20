@@ -15,13 +15,18 @@ header {
 
 header:hover {
   text-decoration: underline;
-  -webkit-transition: all 0.75s ease-in-out;
-  -moz-transition: all 0.75s ease-in-out;
-  transition: all 0.75s ease-in-out;
-  text-shadow: 5px 9px 13px rgba(60, 90, 166, 0.73);
-  -webkit-transition: all 0.75s ease-in-out;
-  -moz-transition: all 0.75s ease-in-out;
-  transition: all 0.75s ease-in-out;
+  text-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 0 0 5px #0000ff;
+  -webkit-text-stroke-width: 4.5px;
+  -webkit-transition: all 0.55s ease-in-out;
+  -moz-transition: all 0.55s ease-in-out;
+  transition: all 0.55s ease-in-out;
+}
+
+header:hover:after {
+  -webkit-text-stroke-width: 3.5px;
+  -webkit-transition: all 0.55s ease-in-out;
+  -moz-transition: all 0.55s ease-in-out;
+  transition: all 0.55s ease-in-out;
 }
 
 h1,

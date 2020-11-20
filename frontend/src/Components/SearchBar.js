@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Result from "./Containers/Result.js";
 import axios from "axios";
-import { Button } from "react-bootstrap";
 
 class SearchBar extends Component {
   constructor(props) {
