@@ -8,6 +8,9 @@
 header {
   font-size: 6em;
   font-family: "Pokemon";
+  color: #ffcb05;
+  -webkit-text-stroke-width: 3.5px;
+  -webkit-text-stroke-color: #2a75bb;
 }
 
 header:hover {
