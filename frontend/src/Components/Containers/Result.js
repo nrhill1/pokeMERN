@@ -12,6 +12,18 @@ class Result extends Component {
     msg: null
   };
 
+  componentDidUpdate(prevProps) {
+    const { errorReducer } = this.props;
+    if (errorReducer !== prevProps.errorReducer) {
+      // Check for register error
+      if (errorReducer.id === "CATCH_FAIL") {
+        this.setState({ msg: errorReducer.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
   onClick = (e) => {
     e.preventDefault();
     const { user } = this.props.authReducer;

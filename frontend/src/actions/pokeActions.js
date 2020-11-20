@@ -14,7 +14,7 @@ export const addToTeam = (username, pokemon) => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(returnErrors(err));
+      dispatch(err.response.data, err.response.status, "CATCH_FAIL");
     });
 };
 
