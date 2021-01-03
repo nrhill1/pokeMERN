@@ -85,6 +85,7 @@ const mapStateToProps = (state) => ({
   authReducer: state.authReducer,
   errorReducer: state.errorReducer
 });
+
 /*
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -92,4 +93,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 */
+
 export default connect(mapStateToProps, null)(Pokemon);
