@@ -33,7 +33,7 @@ class Pokemon extends Component {
         <Card
           border="dark"
           style={{
-            maxHeight: "400px",
+            maxHeight: "fit-content",
             maxWidth: "fit-content",
             margin: "6px",
             display: "inline-block"
@@ -60,7 +60,11 @@ class Pokemon extends Component {
             }}
           />
           <Card.Body>
-            <Card.Title>
+            <Card.Title
+              style={{
+                margin: "0 auto"
+              }}
+            >
               #{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
             </Card.Title>
           </Card.Body>
@@ -70,7 +74,8 @@ class Pokemon extends Component {
             style={{
               marginBottom: "4px",
               maxWidth: "200px",
-              maxHeight: "70px"
+              maxHeight: "70px",
+              display: "inline-block"
             }}
           >
             Remove from team
