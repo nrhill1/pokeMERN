@@ -53,21 +53,25 @@ class Pokemon extends Component {
 						variant="top"
 						src={this.props.pokemon.sprites[1]}
 						style={{
-							maxWidth: '8rem',
-							maxHeight: '8rem',
+							width: '8rem',
+							height: '8rem',
 							margin: '0 auto',
 							display: 'inline-block'
 						}}
 					/>
 					<Card.Body>
-						<Card.Title
-							className="pokemonName"
-							style={{
-								margin: '0 auto'
-							}}
-						>
-							#{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
-						</Card.Title>
+						<div className="nameText" style={{ fontSizeAdjust: 0.58 }}>
+							<Card.Title
+								className="pokemonName"
+								style={{
+									textAlign: 'center',
+									fontSize: '1.3vw',
+									wordWrap: 'break-word'
+								}}
+							>
+								#{this.props.pokemon.id} {this.props.pokemon.name.capitalize()}
+							</Card.Title>
+						</div>
 					</Card.Body>
 					<Button
 						className="removeButton"

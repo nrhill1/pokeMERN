@@ -71,6 +71,7 @@ h2 {
 	-webkit-transition: all 0.55s ease-in-out;
 	-moz-transition: all 0.55s ease-in-out;
 	transition: all 0.55s ease-in-out;
+	text-decoration: black underline;
 }
 
 .regForm {
