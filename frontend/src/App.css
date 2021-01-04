@@ -1,69 +1,83 @@
 .App {
-  text-align: center;
-  background: linear-gradient(#e66465, #9198e5);
-  height: 180vh;
-  min-height: 100vh;
+	text-align: center;
+	background: linear-gradient(#e66465, #9198e5);
+	height: 180vh;
+	min-height: 100vh;
 }
 
 header {
-  font-size: 6em;
-  font-family: "Pokemon";
-  color: #ffcb05;
-  -webkit-text-stroke-width: 3.5px;
-  -webkit-text-stroke-color: #2a75bb;
+	font-size: 6em;
+	font-family: 'Pokemon';
+	color: #ffcb05;
+	-webkit-text-stroke-width: 3.5px;
+	-webkit-text-stroke-color: #2a75bb;
 }
 
 header:hover {
-  text-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 0 0 5px #0000ff;
-  -webkit-text-stroke-width: 4.5px;
-  -webkit-transition: all 0.55s ease-in-out;
-  -moz-transition: all 0.55s ease-in-out;
-  transition: all 0.55s ease-in-out;
-}
-
-header:hover:after {
-  -webkit-text-stroke-width: 3.5px;
-  -webkit-transition: all 0.55s ease-in-out;
-  -moz-transition: all 0.55s ease-in-out;
-  transition: all 0.55s ease-in-out;
+	text-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 0 0 5px #0000ff;
+	-webkit-text-stroke-width: 4.5px;
+	-webkit-transition: all 0.55s ease-in-out;
+	-moz-transition: all 0.55s ease-in-out;
+	transition: all 0.55s ease-in-out;
 }
 
 h1,
 h2 {
-  font-family: "Press Start 2P";
+	font-family: 'Press Start 2P';
 }
 
 .loginForm {
-  max-width: 25rem;
-  margin: 0 auto;
+	max-width: 25rem;
+	margin: 0 auto;
 }
 
 .navLink {
-  margin: 0 auto;
+	margin: 0 auto;
 }
 
 .pokemon {
-  float: left;
-  max-height: fit-content;
-  font-family: "Press Start 2P";
+	float: left;
+	max-height: fit-content;
+	font-family: 'Press Start 2P';
 }
 
-.result {
-  margin: 0 auto;
-  max-width: fit-content;
-  font-family: "Press Start 2P";
+.pokemonCard {
+	background-color: whitesmoke;
+}
+
+.pokemonCard:hover {
+	-webkit-transition: all 0.55s ease-in-out;
+	-moz-transition: all 0.55s ease-in-out;
+	transition: all 0.55s ease-in-out;
+	border: 4.5px;
+	background-color: gray;
+	box-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 0 0 5px #0000ff;
 }
 
 .regForm {
-  max-width: 25rem;
-  margin: 0 auto;
+	max-width: 25rem;
+	margin: 0 auto;
+}
+
+.removeButton {
+	size: 100%;
+}
+
+.removeButton:hover {
+	box-shadow: 5px 9px 13px rgba(106, 3, 3, 0.8), 0 1px 1.5px red;
+}
+
+.result {
+	margin: 0 auto;
+	max-width: fit-content;
+	font-family: 'Press Start 2P';
 }
 
 .search {
-  margin-bottom: 20px;
-  font-family: "Press Start 2P";
+	margin-bottom: 20px;
+	font-family: 'Press Start 2P';
 }
 
 .searchInput {
-  margin-right: 10px;
+	margin-right: 10px;
 }
