@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Card, Button } from 'react-bootstrap';
+import ReactApexChart from 'apexcharts';
 import Transition from 'react-transition-group/Transition';
-
-import StatChart from './Stats/StatChart.js';
 
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 const duration = 300;
-const Images = [Image0, Image1, Image2];
 
 const defaultStyle = {
 	transition: `opacity ${duration}ms ease-in-out`,
@@ -41,7 +39,80 @@ const Fade = ({ in: inProp, currentImage }) => (
 
 class Pokemon extends Component {
 	state = {
-		msg: null
+		msg: null,
+		series: [
+			{
+				name: 'HP',
+				data: [this.props.pokemon.stats[0]]
+			},
+			{
+				name: 'Attack',
+				data: [this.props.pokemon.stats[1]]
+			},
+			{
+				name: 'Defense',
+				data: [this.props.pokemon.stats[2]]
+			},
+			{
+				name: 'Special Attack',
+				data: [this.props.pokemon.stats[3]]
+			},
+			{
+				name: 'Special Defense',
+				data: [this.props.pokemon.stats[4]]
+			},
+			{
+				name: 'Speed',
+				data: [this.props.pokemon.stats[5]]
+			}
+		],
+		options: {
+			chart: {
+				type: 'bar',
+				stacked: true,
+				height: 275,
+				width: 50
+			},
+			plotOptions: {
+				bar: {
+					horizontal: true
+				}
+			},
+			stroke: {
+				width: 1,
+				colors: ['#fff']
+			},
+			title: {
+				text: `${this.props.pokemon.name}'s Stats`
+			},
+			xaxis: {
+				labels: {
+					formatter: function(val) {
+						return val;
+					}
+				}
+			},
+			yaxis: {
+				title: {
+					text: undefined
+				}
+			},
+			tooltip: {
+				y: {
+					formatter: function(val) {
+						return val;
+					}
+				}
+			},
+			fill: {
+				opacity: 1
+			},
+			legend: {
+				position: 'top',
+				horizontalAlign: 'left',
+				offsetX: 40
+			}
+		}
 	};
 
 	componentDidUpdate(prevProps) {
@@ -65,7 +136,7 @@ class Pokemon extends Component {
 					className="pokemonCard"
 					border="dark"
 					style={{
-						height: '260px',
+						height: '310px',
 						width: '300px',
 						padding: '5px',
 						margin: '6px',
@@ -115,8 +186,9 @@ class Pokemon extends Component {
 							right: '10px'
 						}}
 					>
-						Remove from team
+						Remove from Team
 					</Button>
+					<ReactApexChart options={this.state.options} series={this.state.series} type="bar" />
 				</Card>
 			</div>
 		);
