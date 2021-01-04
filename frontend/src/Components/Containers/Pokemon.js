@@ -8,7 +8,8 @@ String.prototype.capitalize = function() {
 
 class Pokemon extends Component {
 	state = {
-		msg: null
+		msg: null,
+		chart: null
 	};
 
 	componentDidUpdate(prevProps) {
