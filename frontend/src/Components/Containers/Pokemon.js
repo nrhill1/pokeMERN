@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Card, Button } from 'react-bootstrap';
 
+import StatChart from './Stats/StatChart.js';
+
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -32,8 +34,8 @@ class Pokemon extends Component {
 					className="pokemonCard"
 					border="dark"
 					style={{
-						maxHeight: 'fit-content',
-						maxWidth: 'fit-content',
+						height: '260px',
+						width: '300px',
 						padding: '5px',
 						margin: '6px',
 						display: 'inline-block'
@@ -74,10 +76,12 @@ class Pokemon extends Component {
 						variant="danger"
 						onClick={this.props.onDelete}
 						style={{
-							marginBottom: '4px',
 							maxWidth: 'fit-content',
 							maxHeight: 'fit-content',
-							display: 'inline-block'
+							display: 'block',
+							position: 'absolute',
+							bottom: '10px',
+							right: '10px'
 						}}
 					>
 						Remove from team

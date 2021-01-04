@@ -43,7 +43,7 @@ class Result extends Component {
 			return (
 				<div className="result">
 					{this.state.msg ? <Alert color="danger">{this.state.msg.msg}</Alert> : null}
-					<Card border="dark" style={{ width: '18rem' }}>
+					<Card className="resultCard" border="dark" style={{ width: '18rem' }}>
 						<Card.Img
 							variant="top"
 							src={this.props.pokemon.sprites['front_default']}

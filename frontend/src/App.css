@@ -93,9 +93,32 @@ h2 {
 	font-family: 'Press Start 2P';
 }
 
+.resultCard:hover {
+	-webkit-transition: all 0.55s ease-in-out;
+	-moz-transition: all 0.55s ease-in-out;
+	transition: all 0.55s ease-in-out;
+	border: 4.5px;
+	background-color: gray;
+	box-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 0 0 5px #0000ff;
+}
+
 .search {
 	margin-bottom: 20px;
 	font-family: 'Press Start 2P';
+}
+
+.searchButton {
+	size: 100%;
+}
+
+.searchButton:hover {
+	-webkit-transition: all 0.55s ease-in-out;
+	-moz-transition: all 0.55s ease-in-out;
+	transition: all 0.55s ease-in-out;
+	color: #ffcb05;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: #2a75bb;
+	font-size: 1.05em;
 }
 
 .searchInput {
