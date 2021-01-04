@@ -119,6 +119,7 @@ h2 {
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-text-stroke-color: #2a75bb;
 	font-size: 1.05em;
+	box-shadow: 5px 9px 13px rgba(60, 90, 166, 0.83), 1.25px 1.5px 3px #0000ff;
 }
 
 .searchInput {

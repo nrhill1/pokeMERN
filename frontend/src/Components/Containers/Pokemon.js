@@ -38,82 +38,85 @@ const Fade = ({ in: inProp, currentImage }) => (
 );
 
 class Pokemon extends Component {
-	state = {
-		msg: null,
-		series: [
-			{
-				name: 'HP',
-				data: [this.props.pokemon.stats[0]]
-			},
-			{
-				name: 'Attack',
-				data: [this.props.pokemon.stats[1]]
-			},
-			{
-				name: 'Defense',
-				data: [this.props.pokemon.stats[2]]
-			},
-			{
-				name: 'Special Attack',
-				data: [this.props.pokemon.stats[3]]
-			},
-			{
-				name: 'Special Defense',
-				data: [this.props.pokemon.stats[4]]
-			},
-			{
-				name: 'Speed',
-				data: [this.props.pokemon.stats[5]]
-			}
-		],
-		options: {
-			chart: {
-				type: 'bar',
-				stacked: true,
-				height: 275,
-				width: 50
-			},
-			plotOptions: {
-				bar: {
-					horizontal: true
+	constructor(props) {
+		super(props);
+		this.state = {
+			msg: null,
+			series: [
+				{
+					name: 'HP',
+					data: [this.props.pokemon.stats[0]]
+				},
+				{
+					name: 'Attack',
+					data: [this.props.pokemon.stats[1]]
+				},
+				{
+					name: 'Defense',
+					data: [this.props.pokemon.stats[2]]
+				},
+				{
+					name: 'Special Attack',
+					data: [this.props.pokemon.stats[3]]
+				},
+				{
+					name: 'Special Defense',
+					data: [this.props.pokemon.stats[4]]
+				},
+				{
+					name: 'Speed',
+					data: [this.props.pokemon.stats[5]]
 				}
-			},
-			stroke: {
-				width: 1,
-				colors: ['#fff']
-			},
-			title: {
-				text: `${this.props.pokemon.name}'s Stats`
-			},
-			xaxis: {
-				labels: {
-					formatter: function(val) {
-						return val;
+			],
+			options: {
+				chart: {
+					type: 'bar',
+					stacked: true,
+					height: 275,
+					width: 50
+				},
+				plotOptions: {
+					bar: {
+						horizontal: true
 					}
-				}
-			},
-			yaxis: {
+				},
+				stroke: {
+					width: 1,
+					colors: ['#fff']
+				},
 				title: {
-					text: undefined
-				}
-			},
-			tooltip: {
-				y: {
-					formatter: function(val) {
-						return val;
+					text: `${this.props.pokemon.name}'s Stats`
+				},
+				xaxis: {
+					labels: {
+						formatter: function(val) {
+							return val;
+						}
 					}
+				},
+				yaxis: {
+					title: {
+						text: undefined
+					}
+				},
+				tooltip: {
+					y: {
+						formatter: function(val) {
+							return val;
+						}
+					}
+				},
+				fill: {
+					opacity: 1
+				},
+				legend: {
+					position: 'top',
+					horizontalAlign: 'left',
+					offsetX: 40
 				}
-			},
-			fill: {
-				opacity: 1
-			},
-			legend: {
-				position: 'top',
-				horizontalAlign: 'left',
-				offsetX: 40
 			}
-		}
-	};
+		};
+	}
 
 	componentDidUpdate(prevProps) {
 		const { errorReducer } = this.props;
@@ -128,7 +131,7 @@ class Pokemon extends Component {
 	}
 
 	render() {
-		// const { isAuth, user } = this.props.authReducer;
+		const { isAuth, user } = this.props.authReducer;
 		return (
 			<div className="pokemon">
 				{this.state.msg ? <Alert color="danger">{this.state.msg.msg}</Alert> : null}
@@ -188,7 +191,9 @@ class Pokemon extends Component {
 					>
 						Remove from Team
 					</Button>
-					<ReactApexChart options={this.state.options} series={this.state.series} type="bar" />
+					<div className="statChart">
+						<ReactApexChart options={this.state.options} series={this.state.series} type="bar" />
+					</div>
 				</Card>
 			</div>
 		);
