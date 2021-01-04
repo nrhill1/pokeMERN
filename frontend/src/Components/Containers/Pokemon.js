@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Card, Button } from 'react-bootstrap';
 
-import StatChart from './Stats/StatChart.js';
-
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
