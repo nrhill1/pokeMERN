@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert, Card, Button } from 'react-bootstrap';
+import Transition from 'react-transition-group/Transition';
 
 import StatChart from './Stats/StatChart.js';
 
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
+const duration = 300;
+const Images = [Image0, Image1, Image2];
+
+const defaultStyle = {
+	transition: `opacity ${duration}ms ease-in-out`,
+	opacity: 0
+};
+
+const transitionStyles = {
+	entering: { opacity: 1 },
+	entered: { opacity: 1 },
+	exiting: { opacity: 0.9 },
+	exited: { opacity: 0.01 }
+};
+
+const Fade = ({ in: inProp, currentImage }) => (
+	<Transition in={inProp} timeout={duration}>
+		{(state) => (
+			<div
+				style={{
+					...defaultStyle,
+					...transitionStyles[state]
+				}}
+			>
+				<img src={currentImage} />
+			</div>
+		)}
+	</Transition>
+);
 
 class Pokemon extends Component {
 	state = {

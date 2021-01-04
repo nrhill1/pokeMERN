@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { addToTeam } from '../../actions/pokeActions.js';
+import StatChart from './Stats/StatChart.js';
 
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
