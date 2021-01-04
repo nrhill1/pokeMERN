@@ -34,6 +34,7 @@ class Pokemon extends Component {
 					style={{
 						maxHeight: 'fit-content',
 						maxWidth: 'fit-content',
+						padding: '5px',
 						margin: '6px',
 						display: 'inline-block'
 					}}
@@ -60,6 +61,7 @@ class Pokemon extends Component {
 					/>
 					<Card.Body>
 						<Card.Title
+							className="pokemonName"
 							style={{
 								margin: '0 auto'
 							}}
@@ -73,8 +75,8 @@ class Pokemon extends Component {
 						onClick={this.props.onDelete}
 						style={{
 							marginBottom: '4px',
-							maxWidth: '200px',
-							maxHeight: '70px',
+							maxWidth: 'fit-content',
+							maxHeight: 'fit-content',
 							display: 'inline-block'
 						}}
 					>
