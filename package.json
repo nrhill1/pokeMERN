@@ -4,7 +4,7 @@
   "description": "MERN app based on the Pokemon api",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js && nodemon server.js",
     "server": "nodemon server.js"
   },
   "repository": {
