@@ -1,8 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import config from 'config';
-import {} from 'dotenv/config.js'
+
+
 
 // Import Routes
 import {authRoutes} from './routes/auth.js';
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 // DB Config
-const db = config.get("mongoURI");
+const db = process.env.MONGO_URI;
 
 // Connect to Mongo
 mongoose
