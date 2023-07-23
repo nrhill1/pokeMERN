@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
 // Create Schema
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   username: {
@@ -25,4 +25,6 @@ const UserSchema = new Schema({
   pokemon: { type: Array, default: void 0, maxlength: 6 }
 });
 
-module.exports = User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
+
+export default User;

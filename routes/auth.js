@@ -1,12 +1,14 @@
-const express = require("express");
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import config from 'config';
+import jwt from 'jsonwebtoken';
+import auth from "../middleware/auth.js";
+
+
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const config = require("config");
-const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
 
 // User Model
-const User = require("../models/User.js");
+import User from '../models/User.js';
 
 // @route   POST auth/register
 // @desc    Register new user
@@ -126,7 +128,7 @@ router.get("/user", auth, async (req, res) => {
   if (!user) return res.status(400).json({ msg: e.message });
 });
 
-module.exports = router;
+export { router as authRoutes };
 
 /*
   try {

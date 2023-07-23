@@ -1,15 +1,16 @@
-const express = require("express");
+import express from "express";
+import bcrypt from "bcryptjs";
+import config from "config";
+import jwt from "jsonwebtoken";
+import auth from "../middleware/auth.js";
+import mongoose from "mongoose";
+import axios from 'axios';
+
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const config = require("config");
-const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
-const axios = require("axios");
-const mongoose = require("mongoose");
 
 // Pokémon Model
-const Pokemon = require("../models/Pokemon.js");
-const User = require("../models/User.js");
+import Pokemon from "../models/Pokemon.js";
+import User from "../models/User.js";
 // @route   POST poke/add
 // @desc    Add pokemon to user team
 // @access  Private
@@ -19,7 +20,7 @@ router.put("/add", auth, async (req, res) => {
   const newPoke = Pokemon({
     id: req.body.pokemon.id,
     name: req.body.pokemon.name,
-    sprites: req.body.pokemon.sprites
+    sprites: req.body.pokemon.sprites,
   });
 
   // Find user
@@ -43,8 +44,8 @@ router.put("/del", auth, async (req, res) => {
     { username: req.body.username },
     {
       $pull: {
-        pokemon: { _id: { $in: [mongoose.Types.ObjectId(req.body.id)] } }
-      }
+        pokemon: { _id: { $in: [mongoose.Types.ObjectId(req.body.id)] } },
+      },
     }
   )
     .then((offTeam) => {
@@ -55,7 +56,7 @@ router.put("/del", auth, async (req, res) => {
     });
 });
 
-module.exports = router;
+export { router as pokeRoutes };
 
 /*
 if (!pokeAdd)

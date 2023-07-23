@@ -1,12 +1,12 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const config = require("config");
-require("dotenv").config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import config from 'config';
+// require("dotenv").config();
 
 // Import Routes
-const authRoutes = require("./routes/auth.js");
-const pokeRoutes = require("./routes/pokemon.js");
+import {authRoutes} from './routes/auth.js';
+import {pokeRoutes} from './routes/pokemon.js';
 
 // Set up Express
 const app = express();
