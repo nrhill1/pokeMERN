@@ -5,8 +5,8 @@ import cors from 'cors';
 
 
 // Import Routes
-import {authRoutes} from './routes/auth.js';
-import {pokeRoutes} from './routes/pokemon.js';
+import { authRoutes } from './routes/auth.js';
+import { pokeRoutes } from './routes/pokemon.js';
 
 // Set up Express
 const app = express();

@@ -1,10 +1,6 @@
 import express from "express";
-import bcrypt from "bcryptjs";
-import config from "config";
-import jwt from "jsonwebtoken";
 import auth from "../middleware/auth.js";
 import mongoose from "mongoose";
-import axios from 'axios';
 
 const router = express.Router();
 
@@ -23,7 +19,7 @@ router.put("/add", auth, async (req, res) => {
     sprites: req.body.pokemon.sprites,
   });
 
-  // Find user
+  // Find userm
   User.findOne({ username: req.body.username }).then((user) => {
     if (user.pokemon.length < 6) {
       // Try updating Pokemon array

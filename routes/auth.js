@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import config from 'config';
+
 import jwt from 'jsonwebtoken';
 import auth from "../middleware/auth.js";
 
@@ -56,7 +56,7 @@ router.post("/register", (req, res) => {
           newUser.save().then((user) => {
             jwt.sign(
               { id: user.id },
-              config.get("jwtSecret"),
+              process.env.JWT_SECRET,
               { expiresIn: 3600 },
               (err, token) => {
                 if (err) {
@@ -99,7 +99,7 @@ router.post("/login", (req, res) => {
 
       jwt.sign(
         { id: user.id },
-        config.get("jwtSecret"),
+        process.env.JWT_SECRET,
         { expiresIn: 3600 },
         (err, token) => {
           if (err) {
